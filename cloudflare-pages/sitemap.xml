@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>/en/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="/en/" />
+    <xhtml:link rel="alternate" hreflang="es" href="/es/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="/en/" />
+  </url>
+  <url>
+    <loc>/en/blueprint</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="/en/blueprint" />
+    <xhtml:link rel="alternate" hreflang="es" href="/es/radiografia" />
+  </url>
+  <url>
+    <loc>/en/methodology</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="/en/methodology" />
+    <xhtml:link rel="alternate" hreflang="es" href="/es/metodologia" />
+  </url>
+  <url>
+    <loc>/en/programs</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="/en/programs" />
+    <xhtml:link rel="alternate" hreflang="es" href="/es/programas" />
+  </url>
+  <url>
+    <loc>/en/programs/profit-maximization</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="/en/programs/profit-maximization" />
+    <xhtml:link rel="alternate" hreflang="es" href="/es/programas/rentabilidad-maximizada" />
+  </url>
+  <url>
+    <loc>/en/programs/operational-optimization</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="/en/programs/operational-optimization" />
+    <xhtml:link rel="alternate" hreflang="es" href="/es/programas/optimizacion-operativa" />
+  </url>
+  <url>
+    <loc>/en/programs/freedom-architecture</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="/en/programs/freedom-architecture" />
+    <xhtml:link rel="alternate" hreflang="es" href="/es/programas/arquitectura-de-independencia" />
+  </url>
+  <url>
+    <loc>/en/programs/kingdom-wealth-and-impact</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="/en/programs/kingdom-wealth-and-impact" />
+    <xhtml:link rel="alternate" hreflang="es" href="/es/programas/riqueza-de-reino-e-impacto" />
+  </url>
+  <url>
+    <loc>/en/programs/prophetic-business-mentorship</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="/en/programs/prophetic-business-mentorship" />
+    <xhtml:link rel="alternate" hreflang="es" href="/es/programas/mentoria-empresarial-profetica" />
+  </url>
+  <url>
+    <loc>/en/why-company-of-profits</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="/en/why-company-of-profits" />
+    <xhtml:link rel="alternate" hreflang="es" href="/es/por-que-company-of-profits" />
+  </url>
+  <url>
+    <loc>/en/about</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="/en/about" />
+    <xhtml:link rel="alternate" hreflang="es" href="/es/nosotros" />
+  </url>
+  <url>
+    <loc>/en/insights</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="/en/insights" />
+    <xhtml:link rel="alternate" hreflang="es" href="/es/insights" />
+  </url>
+  <url>
+    <loc>/en/faq</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="/en/faq" />
+    <xhtml:link rel="alternate" hreflang="es" href="/es/preguntas-frecuentes" />
+  </url>
+  <url>
+    <loc>/en/apply</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="/en/apply" />
+    <xhtml:link rel="alternate" hreflang="es" href="/es/aplicar" />
+  </url>
+  <url>
+    <loc>/es/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="/en/" />
+    <xhtml:link rel="alternate" hreflang="es" href="/es/" />
+  </url>
+  <url>
+    <loc>/es/radiografia</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="/en/blueprint" />
+    <xhtml:link rel="alternate" hreflang="es" href="/es/radiografia" />
+  </url>
+  <url>
+    <loc>/es/metodologia</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="/en/methodology" />
+    <xhtml:link rel="alternate" hreflang="es" href="/es/metodologia" />
+  </url>
+  <url>
+    <loc>/es/programas</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="/en/programs" />
+    <xhtml:link rel="alternate" hreflang="es" href="/es/programas" />
+  </url>
+  <url>
+    <loc>/es/programas/rentabilidad-maximizada</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="/en/programs/profit-maximization" />
+    <xhtml:link rel="alternate" hreflang="es" href="/es/programas/rentabilidad-maximizada" />
+  </url>
+  <url>
+    <loc>/es/programas/optimizacion-operativa</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="/en/programs/operational-optimization" />
+    <xhtml:link rel="alternate" hreflang="es" href="/es/programas/optimizacion-operativa" />
+  </url>
+  <url>
+    <loc>/es/programas/arquitectura-de-independencia</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="/en/programs/freedom-architecture" />
+    <xhtml:link rel="alternate" hreflang="es" href="/es/programas/arquitectura-de-independencia" />
+  </url>
+  <url>
+    <loc>/es/programas/riqueza-de-reino-e-impacto</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="/en/programs/kingdom-wealth-and-impact" />
+    <xhtml:link rel="alternate" hreflang="es" href="/es/programas/riqueza-de-reino-e-impacto" />
+  </url>
+  <url>
+    <loc>/es/programas/mentoria-empresarial-profetica</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="/en/programs/prophetic-business-mentorship" />
+    <xhtml:link rel="alternate" hreflang="es" href="/es/programas/mentoria-empresarial-profetica" />
+  </url>
+  <url>
+    <loc>/es/por-que-company-of-profits</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="/en/why-company-of-profits" />
+    <xhtml:link rel="alternate" hreflang="es" href="/es/por-que-company-of-profits" />
+  </url>
+  <url>
+    <loc>/es/nosotros</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="/en/about" />
+    <xhtml:link rel="alternate" hreflang="es" href="/es/nosotros" />
+  </url>
+  <url>
+    <loc>/es/insights</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="/en/insights" />
+    <xhtml:link rel="alternate" hreflang="es" href="/es/insights" />
+  </url>
+  <url>
+    <loc>/es/preguntas-frecuentes</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="/en/faq" />
+    <xhtml:link rel="alternate" hreflang="es" href="/es/preguntas-frecuentes" />
+  </url>
+  <url>
+    <loc>/es/aplicar</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="/en/apply" />
+    <xhtml:link rel="alternate" hreflang="es" href="/es/aplicar" />
+  </url>
+</urlset>

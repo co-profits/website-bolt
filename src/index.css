@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-dark-green: #06202B;
+    --color-light-green: #00D77F;
+    --color-light-yellow: #AEFC49;
+    --color-purple: #9C8BE7;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background-color: #06202B;
+    color: #E0EDEF;
+    line-height: 1.5;
+  }
+
+  ::selection {
+    background-color: rgba(0, 215, 127, 0.25);
+    color: #AEFC49;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #06202B;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #1A4A58;
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #2A6072;
+  }
+}
+
+@layer components {
+  .container-prose {
+    @apply mx-auto max-w-4xl px-6 lg:px-8;
+  }
+
+  .container-wide {
+    @apply mx-auto max-w-7xl px-6 lg:px-8;
+  }
+
+  .text-gradient-green {
+    background: linear-gradient(135deg, #00D77F 0%, #AEFC49 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .card-surface {
+    @apply border border-ink-700/50 bg-ink-800/40 backdrop-blur-sm;
+    border-radius: 1rem;
+  }
+
+  .nav-link {
+    @apply text-sm font-medium text-ink-200 transition-colors duration-200 hover:text-white;
+  }
+
+  .nav-link-active {
+    @apply text-white;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-brand-light-green px-6 py-3 text-sm font-semibold text-brand-dark-green transition-all duration-200 hover:bg-brand-light-yellow hover:shadow-lg hover:shadow-brand-light-green/20;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-ink-600 px-6 py-3 text-sm font-semibold text-ink-100 transition-all duration-200 hover:border-ink-400 hover:bg-ink-800/60;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 text-sm font-medium text-ink-200 transition-colors duration-200 hover:text-white;
+  }
+
+  .section-eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.2em] text-brand-light-green;
+  }
+
+  .section-heading {
+    @apply font-display text-display-md text-white;
+  }
+}
+
+@layer utilities {
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  }
+
+  .animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .bg-grid-faint {
+    background-image: linear-gradient(rgba(26, 74, 88, 0.15) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(26, 74, 88, 0.15) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+
+  .bg-radial-glow {
+    background: radial-gradient(circle at 50% 0%, rgba(0, 215, 127, 0.08) 0%, transparent 60%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .animate-on-scroll {
+    opacity: 1;
+    transform: none;
+  }
+}
