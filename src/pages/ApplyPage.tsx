@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from 'react';
-import { CheckCircle2, AlertCircle, Shield } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { CheckCircle2, AlertCircle, Info } from 'lucide-react';
 import { useLang } from '@/i18n/LangContext';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import { SEO } from '@/components/SEO';
@@ -16,8 +17,9 @@ export function ApplyPage() {
   const f = a.fields;
 
   const [form, setForm] = useState<FormState>({});
-  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [step, setStep] = useState(1);
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'duplicate' | 'error'>('idle');
 
   const update = (name: string, value: string) => {
     setForm((prev) => ({ ...prev, [name]: value }));
@@ -30,65 +32,95 @@ export function ApplyPage() {
     }
   };
 
-  const validate = (): boolean => {
-    const required = ['companyName', 'fullName', 'email', 'christianAlignment', 'integrationWillingness'];
+  const validateStep = (currentStep: number): boolean => {
     const newErrors: Record<string, string> = {};
-    for (const field of required) {
-      if (!form[field] || form[field].trim() === '') {
-        newErrors[field] = lang === 'en' ? 'This field is required.' : 'Este campo es requerido.';
-      }
+    const err = a.fieldError;
+    const emailErr = a.emailError;
+    const minErr = a.minLengthError;
+
+    if (currentStep === 1) {
+      if (!form.fullName || form.fullName.trim().length < 2) newErrors.fullName = err;
+      if (!form.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) newErrors.email = emailErr;
+      if (!form.companyName || form.companyName.trim().length < 2) newErrors.companyName = err;
+      if (!form.country) newErrors.country = err;
+      if (!form.preferredLanguage) newErrors.preferredLanguage = err;
+      if (!form.industry || form.industry.trim().length < 2) newErrors.industry = err;
+      if (!form.employees) newErrors.employees = err;
+      if (!form.founderCount || !/^\d+$/.test(form.founderCount) || parseInt(form.founderCount) < 1 || parseInt(form.founderCount) > 20) newErrors.founderCount = err;
+    } else if (currentStep === 2) {
+      if (!form.profitabilityContext) newErrors.profitabilityContext = err;
+      if (!form.dependencyLevel) newErrors.dependencyLevel = err;
+      if (!form.primaryConstraint || form.primaryConstraint.trim().length < 20) newErrors.primaryConstraint = minErr;
+    } else if (currentStep === 3) {
+      if (!form.desiredChange || form.desiredChange.trim().length < 20) newErrors.desiredChange = minErr;
+      if (!form.christianAlignment) newErrors.christianAlignment = err;
+      if (!form.phone || form.phone.trim().length < 1) newErrors.phone = err;
+      if (!form.source) newErrors.source = err;
     }
-    if (form.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
-      newErrors.email = lang === 'en' ? 'Please enter a valid email address.' : 'Por favor ingresa un correo válido.';
-    }
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
+  const handleNext = () => {
+    if (validateStep(step)) {
+      setStep((prev) => Math.min(prev + 1, 3));
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  const handleBack = () => {
+    setStep((prev) => Math.max(prev - 1, 1));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    if (!validate()) return;
+    if (!validateStep(3)) return;
 
     setStatus('submitting');
     try {
-      const { error } = await supabase.from('blueprint_applications').insert({
-        language: lang,
+      const payload = {
+        full_name: form.fullName || null,
+        email: (form.email || '').toLowerCase(),
+        phone: form.phone || null,
         company_name: form.companyName || null,
         website: form.website || null,
-        industry: form.industry || null,
-        employees: form.employees || null,
-        location: form.location || null,
-        founder_structure: form.founderStructure || null,
-        business_stage_desc: form.businessStageDesc || null,
-        above_break_even: form.aboveBreakEven || null,
+        country: form.country || null,
+        primary_market: form.primaryMarket || null,
+        language: form.preferredLanguage || lang,
+        industry_model: form.industry || null,
+        employee_band: form.employees || null,
+        founder_count: form.founderCount ? parseInt(form.founderCount) : null,
         profitability_context: form.profitabilityContext || null,
-        founder_dependence_level: form.founderDependenceLevel || null,
-        founder_involvement: form.founderInvolvement || null,
-        bottlenecks: form.bottlenecks || null,
-        primary_challenge: form.primaryChallenge || null,
-        profit_goals: form.profitGoals || null,
-        freedom_goals: form.freedomGoals || null,
-        growth_goals: form.growthGoals || null,
-        other_goals: form.otherGoals || null,
+        dependency_level: form.dependencyLevel || null,
+        primary_constraint: form.primaryConstraint || null,
+        desired_change: form.desiredChange || null,
         christian_alignment: form.christianAlignment || null,
-        christian_alignment_context: form.christianAlignmentContext || null,
-        integration_willingness: form.integrationWillingness || null,
-        integration_context: form.integrationContext || null,
-        full_name: form.fullName || null,
-        email: form.email || null,
-        phone: form.phone || null,
-        preferred_language: form.preferredLanguage || null,
-        anything_else: form.anythingElse || null,
-      });
+        source: form.source || null,
+        additional_context: form.additionalContext || null,
+        consent_insights: form.consentInsights === 'true',
+      };
 
-      if (error) throw error;
-      setStatus('success');
-    } catch (err) {
+      const { error } = await supabase.from('blueprint_applications').insert(payload);
+
+      if (error) {
+        if (error.code === '23505') {
+          setStatus('duplicate');
+        } else {
+          throw error;
+        }
+      } else {
+        setStatus('success');
+      }
+    } catch {
       setStatus('error');
     }
   };
 
-  if (status === 'success') {
+  const privacyPath = lang === 'en' ? '/en/privacy-policy' : '/es/politica-de-privacidad';
+
+  if (status === 'success' || status === 'duplicate') {
     return (
       <>
         <SEO
@@ -100,13 +132,20 @@ export function ApplyPage() {
         <section className="flex min-h-[70vh] items-center justify-center bg-ink-900 pt-24">
           <div className="container-prose text-center">
             <CheckCircle2 className="mx-auto h-16 w-16 text-brand-light-green animate-on-scroll" aria-hidden="true" />
-            <h1 className="mt-8 font-display text-display-md text-white animate-on-scroll">{a.successTitle}</h1>
-            <p className="mt-6 text-lg leading-relaxed text-ink-300 animate-on-scroll">{a.successBody}</p>
+            <h1 className="mt-8 font-display text-display-md text-white animate-on-scroll">
+              {status === 'duplicate' ? a.duplicate : a.successTitle}
+            </h1>
+            {status === 'success' && (
+              <p className="mt-6 text-lg leading-relaxed text-ink-300 animate-on-scroll">{a.successBody}</p>
+            )}
           </div>
         </section>
       </>
     );
   }
+
+  const showFounderPricing = form.founderCount && parseInt(form.founderCount) > 2;
+  const showPrimaryMarket = form.country && form.country !== '';
 
   return (
     <>
@@ -120,16 +159,16 @@ export function ApplyPage() {
         <PageHeader
           eyebrow={t.navCta}
           title={a.title}
-          subtitle={a.subtitle}
+          subtitle={a.intro}
           breadcrumbs={[{ label: t.navCta }]}
         />
 
-        {/* Intro */}
-        <section className="border-t border-ink-700/50 py-20 lg:py-28">
+        {/* Helper section */}
+        <section className="border-t border-ink-700/50 py-12">
           <div className="container-prose">
-            <div className="rounded-xl border border-ink-700/50 bg-ink-800/30 p-8 animate-on-scroll">
-              <h2 className="font-display text-xl text-white">{a.introTitle}</h2>
-              <p className="mt-4 text-sm leading-relaxed text-ink-300">{a.introBody}</p>
+            <div className="rounded-xl border border-ink-700/50 bg-ink-800/30 p-6 animate-on-scroll">
+              <h2 className="font-display text-lg text-white">{a.sectionHeading}</h2>
+              <p className="mt-3 text-sm leading-relaxed text-ink-300">{a.helper}</p>
             </div>
           </div>
         </section>
@@ -137,11 +176,29 @@ export function ApplyPage() {
         {/* Form */}
         <section className="border-t border-ink-700/50 bg-ink-950 py-20 lg:py-28">
           <div className="container-prose">
-            <h2 className="font-display text-display-md animate-on-scroll text-white">{a.formTitle}</h2>
-            <p className="mt-3 text-sm text-ink-400 animate-on-scroll">{a.requiredNote}</p>
+            {/* Progress indicator */}
+            <div className="mb-12 animate-on-scroll">
+              <p className="text-sm font-medium text-ink-300">
+                {a.stepLabels.step} {step} {a.stepLabels.of} 3
+              </p>
+              <div className="mt-3 flex gap-2">
+                {[1, 2, 3].map((s) => (
+                  <div
+                    key={s}
+                    className={`h-1 flex-1 rounded-full transition-colors duration-300 ${
+                      s <= step ? 'bg-brand-light-green' : 'bg-ink-700'
+                    }`}
+                    aria-hidden="true"
+                  />
+                ))}
+              </div>
+              <p className="mt-3 font-display text-base text-white">
+                {step === 1 ? a.stepLabels.step1 : step === 2 ? a.stepLabels.step2 : a.stepLabels.step3}
+              </p>
+            </div>
 
             {status === 'error' && (
-              <div className="mt-8 flex items-start gap-3 rounded-lg border border-red-500/30 bg-red-500/10 p-4">
+              <div className="mb-8 flex items-start gap-3 rounded-lg border border-red-500/30 bg-red-500/10 p-4">
                 <AlertCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-red-400" aria-hidden="true" />
                 <div>
                   <p className="text-sm font-semibold text-red-300">{a.errorTitle}</p>
@@ -150,126 +207,107 @@ export function ApplyPage() {
               </div>
             )}
 
-            <form onSubmit={handleSubmit} className="mt-8 space-y-12" noValidate>
-              {/* Company */}
-              <fieldset className="animate-on-scroll">
-                <legend className="mb-6 border-b border-ink-700/50 pb-3 font-display text-lg text-white">
-                  {a.sections.company}
-                </legend>
-                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-                  <FormField label={f.companyName.label} name="companyName" required placeholder={f.companyName.placeholder} value={form.companyName || ''} onChange={(v) => update('companyName', v)} error={errors.companyName} />
-                  <FormField label={f.website.label} name="website" placeholder={f.website.placeholder} value={form.website || ''} onChange={(v) => update('website', v)} />
-                  <FormField label={f.industry.label} name="industry" placeholder={f.industry.placeholder} value={form.industry || ''} onChange={(v) => update('industry', v)} />
-                  <FormField label={f.employees.label} name="employees" type="select" placeholder={f.employees.placeholder} options={f.employees.options} value={form.employees || ''} onChange={(v) => update('employees', v)} />
-                  <FormField label={f.location.label} name="location" placeholder={f.location.placeholder} value={form.location || ''} onChange={(v) => update('location', v)} />
-                  <FormField label={f.founderStructure.label} name="founderStructure" type="select" placeholder={f.founderStructure.placeholder} options={f.founderStructure.options} value={form.founderStructure || ''} onChange={(v) => update('founderStructure', v)} />
-                </div>
-              </fieldset>
+            <form onSubmit={handleSubmit} noValidate>
+              {/* Step 1 — Founder and company */}
+              {step === 1 && (
+                <fieldset className="space-y-6 animate-on-scroll">
+                  <legend className="mb-6 border-b border-ink-700/50 pb-3 font-display text-lg text-white">
+                    {a.stepLabels.step1}
+                  </legend>
+                  <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                    <FormField label={f.fullName.label} name="fullName" required placeholder={f.fullName.placeholder} value={form.fullName || ''} onChange={(v) => update('fullName', v)} error={errors.fullName} />
+                    <FormField label={f.email.label} name="email" type="email" required placeholder={f.email.placeholder} value={form.email || ''} onChange={(v) => update('email', v)} error={errors.email} />
+                    <FormField label={f.companyName.label} name="companyName" required placeholder={f.companyName.placeholder} value={form.companyName || ''} onChange={(v) => update('companyName', v)} error={errors.companyName} />
+                    <FormField label={f.website.label} name="website" placeholder={f.website.placeholder} value={form.website || ''} onChange={(v) => update('website', v)} />
+                    <FormField label={f.country.label} name="country" type="select" required placeholder={f.country.placeholder} options={f.country.options} value={form.country || ''} onChange={(v) => update('country', v)} error={errors.country} />
+                    <FormField label={f.preferredLanguage.label} name="preferredLanguage" type="select" required placeholder={f.preferredLanguage.placeholder} options={f.preferredLanguage.options} value={form.preferredLanguage || ''} onChange={(v) => update('preferredLanguage', v)} error={errors.preferredLanguage} />
+                    <FormField label={f.industry.label} name="industry" required placeholder={f.industry.placeholder} value={form.industry || ''} onChange={(v) => update('industry', v)} error={errors.industry} />
+                    <FormField label={f.employees.label} name="employees" type="select" required placeholder={f.employees.placeholder} options={f.employees.options} value={form.employees || ''} onChange={(v) => update('employees', v)} error={errors.employees} />
+                    <FormField label={f.founderCount.label} name="founderCount" type="number" required placeholder={f.founderCount.placeholder} value={form.founderCount || ''} onChange={(v) => update('founderCount', v)} error={errors.founderCount} />
+                  </div>
 
-              {/* Business Stage */}
-              <fieldset className="animate-on-scroll">
-                <legend className="mb-6 border-b border-ink-700/50 pb-3 font-display text-lg text-white">
-                  {a.sections.businessStage}
-                </legend>
-                <FormField label={f.businessStageDesc.label} name="businessStageDesc" type="textarea" placeholder={f.businessStageDesc.placeholder} value={form.businessStageDesc || ''} onChange={(v) => update('businessStageDesc', v)} />
-              </fieldset>
+                  {showFounderPricing && (
+                    <div className="flex items-start gap-3 rounded-lg border border-brand-light-yellow/30 bg-brand-light-yellow/5 p-4">
+                      <Info className="mt-0.5 h-4 w-4 flex-shrink-0 text-brand-light-yellow" aria-hidden="true" />
+                      <p className="text-xs text-ink-200">{a.founderPricingNote}</p>
+                    </div>
+                  )}
 
-              {/* Profitability */}
-              <fieldset className="animate-on-scroll">
-                <legend className="mb-6 border-b border-ink-700/50 pb-3 font-display text-lg text-white">
-                  {a.sections.profitability}
-                </legend>
-                <div className="grid grid-cols-1 gap-6">
-                  <FormField label={f.aboveBreakEven.label} name="aboveBreakEven" type="select" placeholder="" options={f.aboveBreakEven.options} value={form.aboveBreakEven || ''} onChange={(v) => update('aboveBreakEven', v)} />
-                  <FormField label={f.profitabilityContext.label} name="profitabilityContext" type="textarea" placeholder={f.profitabilityContext.placeholder} help={f.profitabilityContext.help} value={form.profitabilityContext || ''} onChange={(v) => update('profitabilityContext', v)} />
-                </div>
-              </fieldset>
+                  {showPrimaryMarket && (
+                    <FormField label={f.primaryMarket.label} name="primaryMarket" placeholder={f.primaryMarket.placeholder} value={form.primaryMarket || ''} onChange={(v) => update('primaryMarket', v)} />
+                  )}
 
-              {/* Founder Dependence */}
-              <fieldset className="animate-on-scroll">
-                <legend className="mb-6 border-b border-ink-700/50 pb-3 font-display text-lg text-white">
-                  {a.sections.founderDependence}
-                </legend>
-                <div className="grid grid-cols-1 gap-6">
-                  <FormField label={f.founderDependenceLevel.label} name="founderDependenceLevel" type="select" placeholder="" options={f.founderDependenceLevel.options} value={form.founderDependenceLevel || ''} onChange={(v) => update('founderDependenceLevel', v)} />
-                  <FormField label={f.founderInvolvement.label} name="founderInvolvement" type="textarea" placeholder={f.founderInvolvement.placeholder} value={form.founderInvolvement || ''} onChange={(v) => update('founderInvolvement', v)} />
-                  <FormField label={f.bottlenecks.label} name="bottlenecks" type="textarea" placeholder={f.bottlenecks.placeholder} value={form.bottlenecks || ''} onChange={(v) => update('bottlenecks', v)} />
-                </div>
-              </fieldset>
+                  <div className="border-t border-ink-700/50 pt-6">
+                    <button type="button" onClick={handleNext} className="btn-primary">
+                      {a.next}
+                    </button>
+                  </div>
+                </fieldset>
+              )}
 
-              {/* Challenge */}
-              <fieldset className="animate-on-scroll">
-                <legend className="mb-6 border-b border-ink-700/50 pb-3 font-display text-lg text-white">
-                  {a.sections.challenge}
-                </legend>
-                <FormField label={f.primaryChallenge.label} name="primaryChallenge" type="textarea" placeholder={f.primaryChallenge.placeholder} value={form.primaryChallenge || ''} onChange={(v) => update('primaryChallenge', v)} />
-              </fieldset>
+              {/* Step 2 — Business context */}
+              {step === 2 && (
+                <fieldset className="space-y-6 animate-on-scroll">
+                  <legend className="mb-6 border-b border-ink-700/50 pb-3 font-display text-lg text-white">
+                    {a.stepLabels.step2}
+                  </legend>
+                  <FormField label={f.profitabilityContext.label} name="profitabilityContext" type="select" required placeholder={f.profitabilityContext.placeholder} options={f.profitabilityContext.options} value={form.profitabilityContext || ''} onChange={(v) => update('profitabilityContext', v)} error={errors.profitabilityContext} />
+                  <FormField label={f.dependencyLevel.label} name="dependencyLevel" type="select" required placeholder={f.dependencyLevel.placeholder} options={f.dependencyLevel.options} value={form.dependencyLevel || ''} onChange={(v) => update('dependencyLevel', v)} error={errors.dependencyLevel} />
+                  <FormField label={f.primaryConstraint.label} name="primaryConstraint" type="textarea" required placeholder={f.primaryConstraint.placeholder} value={form.primaryConstraint || ''} onChange={(v) => update('primaryConstraint', v)} error={errors.primaryConstraint} />
 
-              {/* Goals */}
-              <fieldset className="animate-on-scroll">
-                <legend className="mb-6 border-b border-ink-700/50 pb-3 font-display text-lg text-white">
-                  {a.sections.goals}
-                </legend>
-                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-                  <FormField label={f.profitGoals.label} name="profitGoals" type="textarea" placeholder={f.profitGoals.placeholder} value={form.profitGoals || ''} onChange={(v) => update('profitGoals', v)} />
-                  <FormField label={f.freedomGoals.label} name="freedomGoals" type="textarea" placeholder={f.freedomGoals.placeholder} value={form.freedomGoals || ''} onChange={(v) => update('freedomGoals', v)} />
-                  <FormField label={f.growthGoals.label} name="growthGoals" type="textarea" placeholder={f.growthGoals.placeholder} value={form.growthGoals || ''} onChange={(v) => update('growthGoals', v)} />
-                  <FormField label={f.otherGoals.label} name="otherGoals" type="textarea" placeholder={f.otherGoals.placeholder} value={form.otherGoals || ''} onChange={(v) => update('otherGoals', v)} />
-                </div>
-              </fieldset>
+                  <div className="flex flex-col gap-3 border-t border-ink-700/50 pt-6 sm:flex-row">
+                    <button type="button" onClick={handleBack} className="btn-secondary">
+                      {a.back}
+                    </button>
+                    <button type="button" onClick={handleNext} className="btn-primary">
+                      {a.next}
+                    </button>
+                  </div>
+                </fieldset>
+              )}
 
-              {/* Christian Alignment */}
-              <fieldset className="animate-on-scroll">
-                <legend className="mb-6 border-b border-ink-700/50 pb-3 font-display text-lg text-white">
-                  {a.sections.christian}
-                </legend>
-                <div className="grid grid-cols-1 gap-6">
-                  <FormField label={f.christianAlignment.label} name="christianAlignment" type="select" required placeholder="" options={f.christianAlignment.options} value={form.christianAlignment || ''} onChange={(v) => update('christianAlignment', v)} error={errors.christianAlignment} />
-                  <FormField label={f.christianAlignmentContext.label} name="christianAlignmentContext" type="textarea" placeholder={f.christianAlignmentContext.placeholder} value={form.christianAlignmentContext || ''} onChange={(v) => update('christianAlignmentContext', v)} />
-                </div>
-              </fieldset>
+              {/* Step 3 — Desired change and alignment */}
+              {step === 3 && (
+                <fieldset className="space-y-6 animate-on-scroll">
+                  <legend className="mb-6 border-b border-ink-700/50 pb-3 font-display text-lg text-white">
+                    {a.stepLabels.step3}
+                  </legend>
+                  <FormField label={f.desiredChange.label} name="desiredChange" type="textarea" required placeholder={f.desiredChange.placeholder} value={form.desiredChange || ''} onChange={(v) => update('desiredChange', v)} error={errors.desiredChange} />
+                  <FormField label={f.christianAlignment.label} name="christianAlignment" type="select" required placeholder={f.christianAlignment.placeholder} options={f.christianAlignment.options} value={form.christianAlignment || ''} onChange={(v) => update('christianAlignment', v)} error={errors.christianAlignment} />
+                  <FormField label={f.phone.label} name="phone" required placeholder={f.phone.placeholder} value={form.phone || ''} onChange={(v) => update('phone', v)} error={errors.phone} />
+                  <FormField label={f.source.label} name="source" type="select" required placeholder={f.source.placeholder} options={f.source.options} value={form.source || ''} onChange={(v) => update('source', v)} error={errors.source} />
+                  <FormField label={f.additionalContext.label} name="additionalContext" type="textarea" placeholder={f.additionalContext.placeholder} value={form.additionalContext || ''} onChange={(v) => update('additionalContext', v)} />
 
-              {/* Integration */}
-              <fieldset className="animate-on-scroll">
-                <legend className="mb-6 border-b border-ink-700/50 pb-3 font-display text-lg text-white">
-                  {a.sections.integration}
-                </legend>
-                <div className="grid grid-cols-1 gap-6">
-                  <FormField label={f.integrationWillingness.label} name="integrationWillingness" type="select" required placeholder="" options={f.integrationWillingness.options} value={form.integrationWillingness || ''} onChange={(v) => update('integrationWillingness', v)} error={errors.integrationWillingness} />
-                  <FormField label={f.integrationContext.label} name="integrationContext" type="textarea" placeholder={f.integrationContext.placeholder} value={form.integrationContext || ''} onChange={(v) => update('integrationContext', v)} />
-                </div>
-              </fieldset>
+                  {/* Optional Insights consent */}
+                  <div className="rounded-lg border border-ink-700/50 bg-ink-800/20 p-4">
+                    <FormField label={a.consentInsights} name="consentInsights" type="checkbox" checked={form.consentInsights === 'true'} onChange={(v) => update('consentInsights', v)} />
+                  </div>
 
-              {/* Contact */}
-              <fieldset className="animate-on-scroll">
-                <legend className="mb-6 border-b border-ink-700/50 pb-3 font-display text-lg text-white">
-                  {a.sections.contact}
-                </legend>
-                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-                  <FormField label={f.fullName.label} name="fullName" required placeholder={f.fullName.placeholder} value={form.fullName || ''} onChange={(v) => update('fullName', v)} error={errors.fullName} />
-                  <FormField label={f.email.label} name="email" type="email" required placeholder={f.email.placeholder} value={form.email || ''} onChange={(v) => update('email', v)} error={errors.email} />
-                  <FormField label={f.phone.label} name="phone" type="tel" placeholder={f.phone.placeholder} value={form.phone || ''} onChange={(v) => update('phone', v)} />
-                  <FormField label={f.preferredLanguage.label} name="preferredLanguage" type="select" placeholder="" options={f.preferredLanguage.options} value={form.preferredLanguage || ''} onChange={(v) => update('preferredLanguage', v)} />
-                </div>
-                <div className="mt-6">
-                  <FormField label={f.anythingElse.label} name="anythingElse" type="textarea" placeholder={f.anythingElse.placeholder} value={form.anythingElse || ''} onChange={(v) => update('anythingElse', v)} />
-                </div>
-              </fieldset>
+                  {/* Required consent */}
+                  <div className="rounded-lg border border-ink-700/50 bg-ink-800/30 p-4">
+                    <p className="text-xs leading-relaxed text-ink-300">
+                      {a.consentRequired.split('See our Privacy Policy.')[0]}
+                      <Link to={privacyPath} className="text-brand-light-green underline hover:text-brand-light-yellow">
+                        {t.footer.privacyPolicy}
+                      </Link>
+                      {lang === 'en' ? '.' : '.'}
+                    </p>
+                  </div>
 
-              {/* Submit */}
-              <div className="animate-on-scroll border-t border-ink-700/50 pt-8">
-                <div className="flex items-start gap-3">
-                  <Shield className="mt-0.5 h-5 w-5 flex-shrink-0 text-ink-400" aria-hidden="true" />
-                  <p className="text-xs text-ink-400">{a.spamNote}</p>
-                </div>
-                <button
-                  type="submit"
-                  disabled={status === 'submitting'}
-                  className="btn-primary mt-6 w-full sm:w-auto"
-                >
-                  {status === 'submitting' ? a.submittingButton : a.submitButton}
-                </button>
-              </div>
+                  <div className="flex flex-col gap-3 border-t border-ink-700/50 pt-6 sm:flex-row">
+                    <button type="button" onClick={handleBack} className="btn-secondary">
+                      {a.back}
+                    </button>
+                    <button
+                      type="submit"
+                      disabled={status === 'submitting'}
+                      className="btn-primary"
+                    >
+                      {status === 'submitting' ? a.submitting : a.submit}
+                    </button>
+                  </div>
+                </fieldset>
+              )}
             </form>
           </div>
         </section>

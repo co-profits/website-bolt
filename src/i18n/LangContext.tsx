@@ -12,6 +12,7 @@ interface LangContextValue {
   blueprintPath: string;
   homePath: string;
   programsPath: string;
+  contactPath: string;
 }
 
 const LangContext = createContext<LangContextValue | null>(null);
@@ -65,6 +66,7 @@ export function LangProvider({ children }: { children: ReactNode }) {
     blueprintPath: lang === 'en' ? '/en/blueprint' : '/es/radiografia',
     homePath: lang === 'en' ? '/en/' : '/es/',
     programsPath: lang === 'en' ? '/en/programs' : '/es/programas',
+    contactPath: lang === 'en' ? '/en/contact' : '/es/contacto',
   };
 
   return <LangContext.Provider value={value}>{children}</LangContext.Provider>;
@@ -85,6 +87,10 @@ const pathMap: Record<string, string> = {
   '/en/insights': '/es/insights',
   '/en/faq': '/es/preguntas-frecuentes',
   '/en/apply': '/es/aplicar',
+  '/en/contact': '/es/contacto',
+  '/en/privacy-policy': '/es/politica-de-privacidad',
+  '/en/terms-and-conditions': '/es/terminos-y-condiciones',
+  '/en/cookie-policy': '/es/politica-de-cookies',
 };
 
 const reversePathMap: Record<string, string> = Object.entries(pathMap).reduce(

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import type { ReactNode } from 'react';
 import { useLang } from '@/i18n/LangContext';
 
 interface CTABlockProps {
@@ -7,10 +8,13 @@ interface CTABlockProps {
   title: string;
   subtitle?: string;
   buttonLabel?: string;
+  buttonTo?: string;
 }
 
-export function CTABlock({ eyebrow, title, subtitle, buttonLabel }: CTABlockProps) {
+export function CTABlock({ eyebrow, title, subtitle, buttonLabel, buttonTo }: CTABlockProps) {
   const { t, applyPath } = useLang();
+  const to = buttonTo || applyPath;
+  const label = buttonLabel || t.cta.applyBlueprint;
 
   return (
     <section className="relative overflow-hidden border-t border-ink-700/50 bg-ink-900">
@@ -29,8 +33,8 @@ export function CTABlock({ eyebrow, title, subtitle, buttonLabel }: CTABlockProp
             </p>
           )}
           <div className="mt-10 animate-on-scroll">
-            <Link to={applyPath} className="btn-primary">
-              {buttonLabel || t.cta.applyBlueprint}
+            <Link to={to} className="btn-primary">
+              {label}
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
           </div>

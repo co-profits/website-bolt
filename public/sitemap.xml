@@ -73,6 +73,26 @@
     <xhtml:link rel="alternate" hreflang="es" href="/es/aplicar" />
   </url>
   <url>
+    <loc>/en/contact</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="/en/contact" />
+    <xhtml:link rel="alternate" hreflang="es" href="/es/contacto" />
+  </url>
+  <url>
+    <loc>/en/privacy-policy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="/en/privacy-policy" />
+    <xhtml:link rel="alternate" hreflang="es" href="/es/politica-de-privacidad" />
+  </url>
+  <url>
+    <loc>/en/terms-and-conditions</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="/en/terms-and-conditions" />
+    <xhtml:link rel="alternate" hreflang="es" href="/es/terminos-y-condiciones" />
+  </url>
+  <url>
+    <loc>/en/cookie-policy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="/en/cookie-policy" />
+    <xhtml:link rel="alternate" hreflang="es" href="/es/politica-de-cookies" />
+  </url>
+  <url>
     <loc>/es/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="/en/" />
     <xhtml:link rel="alternate" hreflang="es" href="/es/" />
@@ -141,5 +161,25 @@
     <loc>/es/aplicar</loc>
     <xhtml:link rel="alternate" hreflang="en" href="/en/apply" />
     <xhtml:link rel="alternate" hreflang="es" href="/es/aplicar" />
+  </url>
+  <url>
+    <loc>/es/contacto</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="/en/contact" />
+    <xhtml:link rel="alternate" hreflang="es" href="/es/contacto" />
+  </url>
+  <url>
+    <loc>/es/politica-de-privacidad</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="/en/privacy-policy" />
+    <xhtml:link rel="alternate" hreflang="es" href="/es/politica-de-privacidad" />
+  </url>
+  <url>
+    <loc>/es/terminos-y-condiciones</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="/en/terms-and-conditions" />
+    <xhtml:link rel="alternate" hreflang="es" href="/es/terminos-y-condiciones" />
+  </url>
+  <url>
+    <loc>/es/politica-de-cookies</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="/en/cookie-policy" />
+    <xhtml:link rel="alternate" hreflang="es" href="/es/politica-de-cookies" />
   </url>
 </urlset>

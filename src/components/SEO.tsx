@@ -9,19 +9,14 @@ interface SEOProps {
   alternates?: { en: string; es: string };
 }
 
-function buildHreflang(path: string, lang: 'en' | 'es') {
-  return path;
-}
-
 export function SEO({ title, description, path, alternates }: SEOProps) {
   const { lang } = useLang();
-  const fullTitle = `${title} | ${siteConfig.companyName}`;
-  const baseUrl = siteConfig.domain === '[PRODUCTION DOMAIN — CONFIGURE BEFORE LAUNCH]'
-    ? ''
-    : siteConfig.domain;
+  const fullTitle = title.includes(siteConfig.companyName) ? title : `${title} | ${siteConfig.companyName}`;
+  const baseUrl = siteConfig.domain;
 
   useEffect(() => {
     document.title = fullTitle;
+    document.documentElement.lang = lang;
     setMeta('description', description);
     setMeta('og:title', fullTitle, true);
     setMeta('og:description', description, true);
@@ -38,7 +33,7 @@ export function SEO({ title, description, path, alternates }: SEOProps) {
     setLink('alternate', `${baseUrl}${enPath}`, 'en');
     setLink('alternate', `${baseUrl}${esPath}`, 'es');
     setLink('alternate', `${baseUrl}${enPath}`, 'x-default');
-  }, [fullTitle, description, path, baseUrl, alternates]);
+  }, [fullTitle, description, path, baseUrl, alternates, lang]);
 
   return null;
 }

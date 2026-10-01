@@ -21,44 +21,42 @@ export function AboutPage() {
         <PageHeader
           eyebrow={t.nav[5].label}
           title={a.title}
-          subtitle={a.subtitle}
           breadcrumbs={[{ label: t.nav[5].label }]}
         />
 
-        {/* Founder */}
+        {/* Firm */}
         <section className="border-t border-ink-700/50 py-20 lg:py-28">
-          <div className="container-wide">
-            <div className="grid grid-cols-1 gap-12 lg:grid-cols-3 lg:gap-16">
-              {/* Portrait placeholder */}
-              <div className="animate-on-scroll">
-                <div className="aspect-[4/5] overflow-hidden rounded-xl border border-ink-700/50 bg-ink-800/30">
-                  <div className="flex h-full items-center justify-center p-8 text-center">
-                    <p className="text-sm text-ink-500">{a.portraitPlaceholder}</p>
-                  </div>
-                </div>
-              </div>
+          <div className="container-prose">
+            <p className="text-lg leading-relaxed text-ink-200 animate-on-scroll">{a.firmOpening}</p>
+            <p className="mt-6 text-base leading-relaxed text-ink-300 animate-on-scroll">{a.purpose}</p>
+          </div>
+        </section>
 
-              <div className="lg:col-span-2">
-                <h2 className="font-display text-display-md animate-on-scroll text-white">{a.founderTitle}</h2>
-                <div className="mt-6 space-y-4">
-                  {a.founderBody.map((para, i) => (
-                    <p key={i} className="text-base leading-relaxed text-ink-200 animate-on-scroll">{para}</p>
-                  ))}
-                </div>
-              </div>
+        {/* Naming story */}
+        <section className="border-t border-ink-700/50 bg-ink-950 py-20 lg:py-28">
+          <div className="container-prose">
+            <h2 className="font-display text-display-md animate-on-scroll text-white">{a.namingHeading}</h2>
+            <div className="mt-6 space-y-4">
+              {a.namingStory.map((para, i) => (
+                <p key={i} className="text-base leading-relaxed text-ink-200 animate-on-scroll">{para}</p>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* Institutional */}
-        <section className="border-t border-ink-700/50 bg-ink-950 py-20 lg:py-28">
-          <div className="container-prose">
-            <h2 className="font-display text-display-md animate-on-scroll text-white">{a.institutionalTitle}</h2>
-            <p className="mt-6 text-base leading-relaxed text-ink-200 animate-on-scroll">{a.institutionalBody}</p>
+        {/* Founder */}
+        <section className="border-t border-ink-700/50 py-20 lg:py-28">
+          <div className="container-wide">
+            <div className="max-w-3xl">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-light-green animate-on-scroll">{a.founderLabel}</p>
+              <h2 className="mt-4 font-display text-display-md animate-on-scroll text-white">{a.founderName}</h2>
+              <p className="mt-6 text-base leading-relaxed text-ink-200 animate-on-scroll">{a.biography}</p>
+              <p className="mt-6 text-base leading-relaxed text-ink-300 animate-on-scroll">{a.callingStory}</p>
+            </div>
           </div>
         </section>
 
-        <CTABlock title={t.cta.finalCtaTitle} subtitle={t.cta.finalCtaSubtitle} />
+        <CTABlock title={a.cta} buttonLabel={a.cta} />
       </article>
     </>
   );

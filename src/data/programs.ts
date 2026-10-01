@@ -3,17 +3,16 @@ export interface ProgramContent {
   slug: string;
   status: 'active' | 'coming-soon';
   tagline: string;
-  description: string;
+  hero: string;
   whoFor: string;
   businessProblem: string;
-  desiredOutcome: string;
-  whyItMatters: string;
-  workstreams: string[];
+  whatItAddresses: string;
+  howItWorks: string;
   propheticIntegration: string;
-  deliverables: string[];
-  doesNotPromise: string[];
+  whatChanges: string;
+  cta: string;
+  relatedCta: string;
   blueprintRelation: string;
-  nextStep: string;
 }
 
 export interface ProgramData {
@@ -37,87 +36,33 @@ export const programs: ProgramData[] = [
       name: 'Profit Maximization',
       slug: 'profit-maximization',
       status: 'active',
-      tagline: 'Improve the economics and profitability of your business.',
-      description:
-        'A strategic intervention focused on identifying and removing profit constraints while capturing unrealized profit opportunities across the business.',
-      whoFor:
-        'Founders whose businesses are profitable but suspect significant unrealized profit potential — whether through pricing, cost structure, operational waste, or strategic misalignment.',
-      businessProblem:
-        'Many established businesses operate below their profit potential. Revenue grows but margins stagnate. Profit leaks persist for years unnoticed — in pricing, in operational waste, in underperforming segments, in decisions that made sense once but no longer do.',
-      desiredOutcome:
-        'A more profitable business with stronger margins, clearer profit drivers, and the strategic clarity to sustain and compound profit performance over time.',
-      whyItMatters:
-        'Profitability is the commercial foundation of everything else. Without strong profit performance, freedom, wealth, and impact remain theoretical. Profit is not the goal — but it is the resource that makes every other goal possible.',
-      workstreams: [
-        'Profit constraint identification and analysis',
-        'Pricing and margin structure review',
-        'Revenue quality and segment performance assessment',
-        'Cost structure and operational waste evaluation',
-        'Strategic profit opportunity mapping',
-        'Profit performance execution plan',
-      ],
-      propheticIntegration:
-        'Prophetic discernment may reveal hidden profit constraints, confirm strategic directions, identify seasons for specific interventions, or expose risks that conventional analysis would miss. The Holy Spirit provides strategic discernment that complements business analysis.',
-      deliverables: [
-        'Documented profit constraint analysis',
-        'Strategic profit opportunity map',
-        'Prioritized execution plan with key decisions identified',
-        'Prophetic discernment summary relevant to profit strategy',
-        'Progress reassessment framework',
-      ],
-      doesNotPromise: [
-        'No fixed percentage profit increase is promised.',
-        'No specific revenue or margin outcome is guaranteed.',
-        'No timeline for results is prescribed without diagnosis.',
-        'No result is promised without execution by the client.',
-      ],
-      blueprintRelation:
-        'This program may be recommended as the first intervention after the Prophetic Business Blueprint — but only if diagnosis identifies profitability as the primary constraint or opportunity. It is not automatically first.',
-      nextStep:
-        'If this resonates with your situation, the next step is the Prophetic Business Blueprint — where we diagnose your business and determine whether this is the right intervention for you.',
+      tagline: 'For businesses whose primary constraint is economic.',
+      hero: 'Improve the economics of the business by identifying the constraint that is limiting profitability and the opportunity that may be leaving value on the table.',
+      whoFor: 'Companies generating real revenue whose profitability is constrained by pricing, customer economics, cost structure, working capital, revenue composition, or another issue identified through diagnosis.',
+      businessProblem: 'Growth can increase complexity without improving the economics of the business. When revenue rises but margin, visibility, or decision quality does not, the business can become busier without becoming stronger.',
+      whatItAddresses: 'Pricing logic, margin relationships, customer or offer economics, cost discipline, working capital, and commercial decisions that shape profitability.',
+      howItWorks: 'The Blueprint first determines whether profitability is the primary constraint or opportunity. If it is, the work focuses on the commercial relationships that matter most rather than imposing a generic financial program.',
+      propheticIntegration: 'Prophetic discernment is integrated into decisions about direction, timing, relationships, stewardship, and the conditions surrounding the business.',
+      whatChanges: 'The intended direction is clearer commercial decision-making and stronger economic foundations. No fixed financial result is promised.',
+      cta: 'Find out whether Profit Maximization is right for your business.',
+      relatedCta: 'Start with the Prophetic Business Blueprint.',
+      blueprintRelation: 'The Blueprint determines whether profitability is the primary constraint or opportunity before this program is recommended.',
     },
     es: {
       name: 'Rentabilidad Maximizada',
       slug: 'rentabilidad-maximizada',
       status: 'active',
-      tagline: 'Mejorar la economía y rentabilidad de tu empresa.',
-      description:
-        'Una intervención estratégica enfocada en identificar y eliminar las restricciones de rentabilidad mientras se aprovechan las oportunidades de utilidad no realizadas en la empresa.',
-      whoFor:
-        'Empresarios cuyas empresas son rentables pero sospechan un potencial de utilidad significativo sin realizar — ya sea por precios, estructura de costos, desperdicio operativo o desalineación estratégica.',
-      businessProblem:
-        'Muchas empresas establecidas operan por debajo de su potencial de rentabilidad. Los ingresos crecen pero los márgenes se estancan. Las fugas de utilidad persisten durante años sin ser notadas — en los precios, en el desperdicio operativo, en segmentos de bajo desempeño, en decisiones que tuvieron sentido en su momento pero que ya no lo tienen.',
-      desiredOutcome:
-        'Una empresa más rentable con márgenes más fuertes, mejores factores de utilidad y la claridad estratégica para sostener y multiplicar el desempeño de rentabilidad a lo largo del tiempo.',
-      whyItMatters:
-        'La rentabilidad es el fundamento comercial de todo lo demás. Sin un desempeño sólido de utilidad, la libertad, la riqueza y el impacto siguen siendo teóricos. La utilidad no es el objetivo, pero es el recurso que hace posible cualquier otro objetivo.',
-      workstreams: [
-        'Identificación y análisis de restricciones de rentabilidad',
-        'Revisión de estructura de precios y márgenes',
-        'Evaluación de calidad de ingresos y desempeño por segmento',
-        'Análisis de estructura de costos y desperdicio operativo',
-        'Mapeo de oportunidades estratégicas de rentabilidad',
-        'Plan de ejecución para mejorar el desempeño de utilidad',
-      ],
-      propheticIntegration:
-        'La discernimiento profético puede revelar restricciones ocultas de rentabilidad, confirmar direcciones estratégicas, identificar tiempos para intervenciones específicas o exponer riesgos que el análisis convencional no detectaría. El Espíritu Santo provee discernimiento estratégico que complementa el análisis empresarial.',
-      deliverables: [
-        'Análisis documentado de restricciones de rentabilidad',
-        'Mapa estratégico de oportunidades de utilidad',
-        'Plan de ejecución priorizado con decisiones clave identificadas',
-        'Resumen de discernimiento profético relevante a la estrategia de rentabilidad',
-        'Marco de reevaluación de progreso',
-      ],
-      doesNotPromise: [
-        'No se promete un porcentaje fijo de aumento en rentabilidad.',
-        'No se garantiza un resultado específico de ingresos o márgenes.',
-        'No se prescribe un plazo para resultados sin diagnóstico.',
-        'No se promete resultado alguno sin ejecución por parte del cliente.',
-      ],
-      blueprintRelation:
-        'Este programa puede ser recomendado como primera intervención después de la Radiografía Empresarial Profética — pero solo si el diagnóstico identifica la rentabilidad como la principal restricción u oportunidad. No es automáticamente el primero.',
-      nextStep:
-        'Si esto resuena con tu situación, el siguiente paso es la Radiografía Empresarial Profética — donde diagnosticamos tu empresa y determinamos si esta es la intervención adecuada para ti.',
+      tagline: 'Para empresas cuya principal restricción es económica.',
+      hero: 'Mejora la economía de la empresa al identificar la restricción que está limitando la rentabilidad y la oportunidad que podría estar quedándose sin aprovechar.',
+      whoFor: 'Empresas con ingresos reales cuya rentabilidad está limitada por los precios, la economía de sus clientes, la estructura de costos, el capital de trabajo, la composición de sus ingresos u otro factor identificado en el diagnóstico.',
+      businessProblem: 'El crecimiento puede aumentar la complejidad sin mejorar la economía del negocio. Cuando los ingresos suben, pero el margen, la visibilidad o la calidad de las decisiones no avanzan, la empresa puede estar más ocupada sin ser más sólida.',
+      whatItAddresses: 'Lógica de precios, relaciones entre márgenes, economía de clientes u ofertas, disciplina de costos, capital de trabajo y decisiones comerciales que determinan la rentabilidad.',
+      howItWorks: 'La Radiografía determina primero si la rentabilidad es la principal restricción u oportunidad. Si lo es, el trabajo se concentra en las relaciones comerciales más importantes en lugar de imponer un programa financiero genérico.',
+      propheticIntegration: 'El discernimiento profético se integra en las decisiones sobre dirección, tiempos, relaciones, mayordomía y condiciones que rodean a la empresa.',
+      whatChanges: 'La dirección buscada es una toma de decisiones comerciales más clara y bases económicas más sólidas. No se promete un resultado financiero específico.',
+      cta: 'Descubre si Rentabilidad Maximizada es adecuada para tu empresa.',
+      relatedCta: 'Comienza con la Radiografía Empresarial Profética.',
+      blueprintRelation: 'La Radiografía determina si la rentabilidad es la principal restricción u oportunidad antes de recomendar este programa.',
     },
   },
   {
@@ -130,89 +75,33 @@ export const programs: ProgramData[] = [
       name: 'Operational Optimization',
       slug: 'operational-optimization',
       status: 'active',
-      tagline: 'Improve the operating structure and execution capacity of your business.',
-      description:
-        'A structural intervention that addresses how the business operates — roles, decision systems, execution capacity, and the organizational friction that slows everything down.',
-      whoFor:
-        'Founders whose businesses have outgrown their original operating structure — where roles are unclear, decisions bottleneck, execution is inconsistent, and the founder is pulled into too many operational matters.',
-      businessProblem:
-        'A business can be profitable and still operate poorly. Roles overlap or are undefined. Decisions pile up on the founder. Execution depends on who is paying attention that week. The operating structure that worked at one stage now creates friction at the current one.',
-      desiredOutcome:
-        'A business with clear roles, functional decision systems, consistent execution, and the organizational capability to operate without constant founder involvement in operations.',
-      whyItMatters:
-        'Operations is where strategy meets reality. Even the best strategic plan fails without an operating structure that can execute it. Operational friction is also one of the most common reasons founders remain trapped in the business.',
-      workstreams: [
-        'Operating structure and role clarity assessment',
-        'Decision system design and bottleneck removal',
-        'Execution capability and process evaluation',
-        'Organizational friction identification',
-        'Founder involvement reduction planning',
-        'Operational execution plan',
-      ],
-      propheticIntegration:
-        'Prophetic discernment may reveal hidden operational issues, identify the right people for key roles, expose structural risks, or provide direction on timing and prioritization of structural changes. The Holy Spirit brings insight that goes beyond organizational charts.',
-      deliverables: [
-        'Documented operating structure analysis',
-        'Decision system redesign recommendations',
-        'Role clarity and delegation framework',
-        'Operational friction map with prioritized resolutions',
-        'Prophetic discernment summary relevant to operational structure',
-        'Execution plan with reassessment framework',
-      ],
-      doesNotPromise: [
-        'No specific operational metric outcome is guaranteed.',
-        'No promise that founder involvement drops to zero — the goal is appropriate involvement, not absence.',
-        'No fixed timeline without diagnosis.',
-        'No result without client execution.',
-      ],
-      blueprintRelation:
-        'This program may be recommended first if the Blueprint identifies operating structure as the primary constraint. It is not always the first intervention — that determination requires diagnosis.',
-      nextStep:
-        'If your operations feel like they have outgrown their structure, the next step is the Prophetic Business Blueprint — where we diagnose whether this is the right intervention for your current situation.',
+      tagline: 'For businesses whose primary constraint is operating structure.',
+      hero: 'Improve the operating structure and execution capacity of the business so decisions, responsibilities, and delivery do not keep routing through the founder.',
+      whoFor: 'Companies where founders spend too much time resolving operational emergencies, mediating confusion, checking work, or carrying decisions that should be distributed.',
+      businessProblem: 'Informal operating habits can work for a while and then become a source of friction as the company grows. When processes, roles, handoffs, decision rights, or standards are unclear, the founder becomes the default answer to every unresolved issue.',
+      whatItAddresses: 'Processes, role clarity, decision rights, accountability, operating rhythms, handoffs, delivery standards, and the points where work repeatedly returns to the founder.',
+      howItWorks: 'The Blueprint determines whether operating structure is the primary constraint. If so, the intervention focuses on the few relationships and decisions that will make execution clearer and more dependable.',
+      propheticIntegration: 'Prophetic discernment is brought into questions of leadership, integrity, relationships, timing, and the human dynamics shaping the operating system.',
+      whatChanges: 'The aim is to reduce operational friction, clarify responsibilities, automate where possible, and enable the company to operate with less unnecessary intervention from the founder.',
+      cta: 'Find out whether Operational Optimization is right for your business.',
+      relatedCta: 'Start with the Prophetic Business Blueprint.',
+      blueprintRelation: 'The Blueprint determines whether operating structure is the primary constraint before this program is recommended.',
     },
     es: {
       name: 'Optimización Operativa',
       slug: 'optimizacion-operativa',
       status: 'active',
-      tagline: 'Mejorar la estructura operativa y la capacidad de ejecución de tu empresa.',
-      description:
-        'Una intervención estructural que aborda cómo opera la empresa — roles, sistemas de decisión, capacidad de ejecución y la fricción organizacional que todo lo hace más lento.',
-      whoFor:
-        'Empresarios cuyas empresas han superado su estructura operativa original — donde los roles no están claros, las decisiones se atascan, la ejecución es inconsistente y el fundador es arrastrado a demasiados asuntos operativos.',
-      businessProblem:
-        'Una empresa puede ser rentable y aún así operar mal. Los roles se superponen o no están definidos. Las decisiones se acumulan en el fundador. La ejecución depende de quién esté prestando atención esa semana. La estructura operativa que funcionó en una etapa ahora genera fricción en la actual.',
-      desiredOutcome:
-        'Una empresa con roles claros, sistemas de decisión funcionales, ejecución consistente y la capacidad organizacional para operar sin la involucración constante del fundador en lo operativo.',
-      whyItMatters:
-        'La operación es donde la estrategia se encuentra con la realidad. Incluso el mejor plan estratégico fracasa sin una estructura operativa que pueda ejecutarlo. La fricción operativa es también una de las razones más comunes por las que los fundadores permanecen atrapados en la empresa.',
-      workstreams: [
-        'Evaluación de estructura operativa y claridad de roles',
-        'Diseño de sistemas de decisión y eliminación de cuellos de botella',
-        'Evaluación de capacidad de ejecución y procesos',
-        'Identificación de fricción organizacional',
-        'Planificación de reducción de involucración del fundador',
-        'Plan de ejecución operativa',
-      ],
-      propheticIntegration:
-        'El discernimiento profético puede revelar problemas operativos ocultos, identificar a las personas adecuadas para roles clave, exponer riesgos estructurales o proveer dirección sobre el momento y la priorización de cambios estructurales. El Espíritu Santo trae discernimiento que va más allá de los organigramas.',
-      deliverables: [
-        'Análisis documentado de estructura operativa',
-        'Recomendaciones de rediseño de sistemas de decisión',
-        'Marco de claridad de roles y delegación',
-        'Mapa de fricción operativa con resoluciones priorizadas',
-        'Resumen de discernimiento profético relevante a la estructura operativa',
-        'Plan de ejecución con marco de reevaluación',
-      ],
-      doesNotPromise: [
-        'No se garantiza un resultado operacional específico.',
-        'No se promete que la involucración del fundador llegue a cero — el objetivo es una involucración adecuada, no la ausencia.',
-        'No se fija un plazo sin diagnóstico.',
-        'No hay resultado sin ejecución del cliente.',
-      ],
-      blueprintRelation:
-        'Este programa puede ser recomendado primero si la Radiografía identifica la estructura operativa como la principal restricción. No es siempre la primera intervención — esa determinación requiere diagnóstico.',
-      nextStep:
-        'Si sientes que tus operaciones han superado su estructura, el siguiente paso es la Radiografía Empresarial Profética — donde diagnosticamos si esta es la intervención adecuada para tu situación actual.',
+      tagline: 'Para empresas cuya principal restricción está en la estructura operativa.',
+      hero: 'Mejora la estructura operativa y la capacidad de ejecución para que las decisiones, las responsabilidades y la entrega no sigan pasando por el fundador.',
+      whoFor: 'Empresas cuyos fundadores pasan demasiado tiempo apagando emergencias operativas, mediando confusiones, revisando el trabajo o cargando decisiones que deberían estar distribuidas.',
+      businessProblem: 'Los hábitos operativos informales pueden funcionar por un tiempo y luego convertirse en una fuente de fricción a medida que la empresa crece. Cuando los procesos, los roles, las transferencias de tareas, los derechos de decisión o los estándares no están claros, el fundador se convierte en la respuesta automática a cada problema pendiente.',
+      whatItAddresses: 'Procesos, claridad de roles, derechos de decisión, rendición de cuentas, ritmos operativos, transferencias de tareas, estándares de entrega y los puntos donde el trabajo regresa repetidamente al fundador.',
+      howItWorks: 'La Radiografía determina si la estructura operativa es la principal restricción. Si lo es, la intervención se concentra en las relaciones y decisiones que harán que la ejecución sea más clara y confiable.',
+      propheticIntegration: 'El discernimiento profético se integra en las preguntas de liderazgo, integridad, relaciones, tiempos y dinámicas humanas que están dando forma al sistema operativo.',
+      whatChanges: 'La dirección buscada es reducir la fricción operativa, aclarar la responsabilidad, automatizar cuando sea posible y permitir que la empresa ejecute con menos intervención innecesaria del fundador.',
+      cta: 'Descubre si Optimización Operativa es adecuada para tu empresa.',
+      relatedCta: 'Comienza con la Radiografía Empresarial Profética.',
+      blueprintRelation: 'La Radiografía determina si la estructura operativa es la principal restricción antes de recomendar este programa.',
     },
   },
   {
@@ -225,91 +114,33 @@ export const programs: ProgramData[] = [
       name: 'Freedom Architecture',
       slug: 'freedom-architecture',
       status: 'active',
-      tagline: 'Reduce founder dependence and create genuine freedom of choice.',
-      description:
-        'A leadership and structural intervention designed to build a company that can operate and grow with substantially less dependence on the founder — creating freedom of choice, not forced exit.',
-      whoFor:
-        'Founders who recognize that their business depends too heavily on them — for decisions, for relationships, for operational continuity — and want to build a company that gives them genuine freedom.',
-      businessProblem:
-        'A successful company should create more freedom than it demands. Yet many founders find themselves more trapped as the business grows. Key-person risk concentrates in one person. Decisions cannot proceed without the founder. Selling the company would be difficult because it depends on them. The founder is involved by necessity, not by choice.',
-      desiredOutcome:
-        'A company that can operate and grow with less founder intervention — where the founder remains involved by choice rather than necessity, with genuine freedom to decide how they spend their time, energy, and attention.',
-      whyItMatters:
-        'Founder dependence is the single most common reason a successful business becomes a trap. It limits growth, limits value, limits freedom, and limits the founder\'s capacity for family, for stewardship, and for hearing and following God.',
-      workstreams: [
-        'Founder dependence assessment and mapping',
-        'Leadership structure and delegation architecture',
-        'Decision authority redesign',
-        'Key-person risk reduction planning',
-        'Operating independence framework',
-        'Freedom progression plan',
-      ],
-      propheticIntegration:
-        'Prophetic discernment is especially relevant here — it may reveal the right timing for structural changes, identify the right people to carry greater responsibility, expose hidden dependencies, or provide direction on the founder\'s next season. The Holy Spirit brings wisdom that goes beyond organizational design.',
-      deliverables: [
-        'Documented founder dependence map',
-        'Leadership and delegation architecture',
-        'Decision authority framework',
-        'Key-person risk reduction plan',
-        'Prophetic discernment summary relevant to freedom and transition',
-        'Freedom progression plan with reassessment framework',
-      ],
-      doesNotPromise: [
-        'Freedom is not abandonment or forced exit.',
-        'No promise that the founder disappears from the business.',
-        'No promise to sell the company — that is a choice, not a goal.',
-        'No fixed timeline without diagnosis.',
-        'No result without client execution.',
-      ],
-      blueprintRelation:
-        'This program may be recommended first if the Blueprint identifies founder dependence as the primary constraint. The Blueprint determines what the business actually needs — Freedom Architecture is not automatically the first or the last intervention.',
-      nextStep:
-        'If you recognize that your business depends too heavily on you, the next step is the Prophetic Business Blueprint — where we diagnose your business and determine whether this is the right intervention for now.',
+      tagline: 'For businesses whose primary constraint is founder dependence.',
+      hero: 'Reduce founder dependence and build a company that can operate and grow with more freedom of choice.',
+      whoFor: 'Christian entrepreneurs whose decisions, relationships, knowledge, and daily operations still depend too heavily on their personal presence.',
+      businessProblem: 'When critical decisions and institutional knowledge live mainly in the founder, the business cannot create reliable space for rest, family, strategic leadership, or the next stage of growth.',
+      whatItAddresses: 'Decision distribution, leadership capacity, institutional knowledge, governance, delegation, founder availability, and patterns that make the founder indispensable by default.',
+      howItWorks: 'The Blueprint determines whether founder dependence is the primary constraint. If it is, the work focuses on structures and leadership capacity that allow the founder to lead by choice rather than necessity.',
+      propheticIntegration: 'Freedom also requires discernment. Prophetic guidance is integrated into questions of timing, stewardship, responsibility, rest, leadership, and decisions shaping the founder\'s role.',
+      whatChanges: 'The intended direction is a company that can operate with less dependence on the founder while the founder retains responsible leadership and meaningful choice.',
+      cta: 'Find out whether Freedom Architecture is right for your business.',
+      relatedCta: 'Start with the Prophetic Business Blueprint.',
+      blueprintRelation: 'The Blueprint determines whether founder dependence is the primary constraint before this program is recommended.',
     },
     es: {
       name: 'Arquitectura de Independencia',
       slug: 'arquitectura-de-independencia',
       status: 'active',
-      tagline: 'Reducir la dependencia del fundador y crear libertad de elección genuina.',
-      description:
-        'Una intervención de liderazgo y estructura diseñada para construir una empresa que pueda operar y crecer con mucha menos dependencia del fundador — creando libertad de elección, no una salida forzada.',
-      whoFor:
-        'Empresarios que reconocen que su empresa depende demasiado de ellos — en las decisiones, en las relaciones, en la continuidad operativa — y quieren construir una empresa que les dé libertad genuina.',
-      businessProblem:
-        'Una empresa exitosa debería crear más libertad de la que exige. Sin embargo, muchos fundadores se sienten más atrapados a medida que la empresa crece. El riesgo de persona clave se concentra en una sola persona. Las decisiones no pueden avanzar sin el fundador. Vender la empresa sería difícil porque depende de él. El fundador está involucrado por necesidad, no por elección.',
-      desiredOutcome:
-        'Una empresa que pueda operar y crecer con menos intervención del fundador — donde el fundador permanezca involucrado por elección y no por necesidad, con libertad genuina para decidir cómo invierte su tiempo, energía y atención.',
-      whyItMatters:
-        'La dependencia del fundador es la razón más común por la que una empresa exitosa se convierte en una trampa. Limita el crecimiento, limita el valor, limita la libertad y limita la capacidad del fundador para la familia, para la mayordomía y para escuchar y seguir a Dios.',
-      workstreams: [
-        'Evaluación y mapeo de dependencia del fundador',
-        'Arquitectura de liderazgo y delegación',
-        'Rediseño de autoridad de decisiones',
-        'Planificación de reducción de riesgo de persona clave',
-        'Marco de independencia operativa',
-        'Plan de progresión de libertad',
-      ],
-      propheticIntegration:
-        'El discernimiento profético es especialmente relevante aquí — puede revelar el momento adecuado para cambios estructurales, identificar a las personas correctas para asumir mayor responsabilidad, exponer dependencias ocultas o proveer dirección sobre la próxima temporada del fundador. El Espíritu Santo trae sabiduría que va más allá del diseño organizacional.',
-      deliverables: [
-        'Mapa documentado de dependencia del fundador',
-        'Arquitectura de liderazgo y delegación',
-        'Marco de autoridad de decisiones',
-        'Plan de reducción de riesgo de persona clave',
-        'Resumen de discernimiento profético relevante a la libertad y transición',
-        'Plan de progresión de libertad con marco de reevaluación',
-      ],
-      doesNotPromise: [
-        'La libertad no es abandono ni salida forzada.',
-        'No se promete que el fundador desaparezca de la empresa.',
-        'No se promete vender la empresa — eso es una elección, no un objetivo.',
-        'No se fija un plazo sin diagnóstico.',
-        'No hay resultado sin ejecución del cliente.',
-      ],
-      blueprintRelation:
-        'Este programa puede ser recomendado primero si la Radiografía identifica la dependencia del fundador como la principal restricción. La Radiografía determina lo que la empresa realmente necesita — Arquitectura de Independencia no es automáticamente la primera ni la última intervención.',
-      nextStep:
-        'Si reconoces que tu empresa depende demasiado de ti, el siguiente paso es la Radiografía Empresarial Profética — donde diagnosticamos tu empresa y determinamos si esta es la intervención adecuada para ahora.',
+      tagline: 'Para empresas cuya principal restricción es la dependencia del fundador.',
+      hero: 'Reduce la dependencia del fundador y construye una empresa que pueda operar y crecer con mayor libertad de elección.',
+      whoFor: 'Empresarios cristianos cuyas decisiones, relaciones, conocimiento y operación diaria todavía dependen demasiado de su presencia personal.',
+      businessProblem: 'Cuando las decisiones críticas y el conocimiento institucional viven principalmente en la mente del fundador, la empresa no puede crear un espacio confiable para el descanso, la familia, el liderazgo estratégico ni la siguiente etapa de crecimiento.',
+      whatItAddresses: 'Distribución de decisiones, capacidad de liderazgo, conocimiento institucional, gobernanza, delegación, disponibilidad del fundador y patrones que lo vuelven indispensable por defecto.',
+      howItWorks: 'La Radiografía determina si la dependencia del fundador es la principal restricción. Si lo es, el trabajo se concentra en construir estructuras y capacidad de liderazgo que permitan liderar por elección y no por necesidad.',
+      propheticIntegration: 'La libertad también requiere discernimiento. La guía profética se integra en las preguntas de tiempos, mayordomía, responsabilidad, descanso, liderazgo y en las decisiones que definen el papel del fundador.',
+      whatChanges: 'La dirección buscada es una empresa que opere con menor dependencia del fundador, mientras el fundador conserva un liderazgo responsable y una capacidad real de elegir.',
+      cta: 'Descubre si Arquitectura de Independencia es adecuada para tu empresa.',
+      relatedCta: 'Comienza con la Radiografía Empresarial Profética.',
+      blueprintRelation: 'La Radiografía determina si la dependencia del fundador es la principal restricción antes de recomendar este programa.',
     },
   },
   {
@@ -322,77 +153,33 @@ export const programs: ProgramData[] = [
       name: 'Kingdom Wealth & Impact',
       slug: 'kingdom-wealth-and-impact',
       status: 'coming-soon',
-      tagline: 'Financial organization, stewardship, and purposeful impact — coming soon.',
-      description:
-        'A future program designed to help Christian founders build wealth capacity and organize their financial lives for stewardship and Kingdom-oriented impact.',
-      whoFor:
-        'Founders who have built a profitable, well-structured, and increasingly independent business — and are ready to think strategically about wealth, stewardship, and impact.',
-      businessProblem:
-        'Profit and freedom are milestones, not destinations. Many founders reach a point where the question shifts from "how do I grow?" to "what is this all for?" — and discover they have no clear financial organization, stewardship strategy, or impact framework.',
-      desiredOutcome:
-        'A founder with organized finances, a stewardship mindset, asset-building strategy, and a clear framework for purposeful, Kingdom-oriented impact.',
-      whyItMatters:
-        'Wealth without purpose becomes a burden. Stewardship without strategy becomes guesswork. Impact without organization becomes scattered. This program addresses the dimension beyond profit and freedom.',
-      workstreams: [
-        'Financial organization and clarity',
-        'Stewardship framework and philosophy',
-        'Asset building and wealth capacity strategy',
-        'Purposeful impact planning',
-        'Kingdom-oriented legacy design',
-      ],
-      propheticIntegration:
-        'Prophetic discernment will be central to this program — helping founders understand seasons, direction, and the specific stewardship and impact calls God has placed on their lives and businesses.',
-      deliverables: [
-        'Detailed program design in progress',
-        'Full deliverables will be published when the program launches',
-      ],
-      doesNotPromise: [
-        'No wealth outcomes are promised.',
-        'No prosperity guarantees.',
-        'No specific financial returns.',
-      ],
-      blueprintRelation:
-        'This program will be part of the diagnosis-driven architecture once available. It is not yet available for application.',
-      nextStep:
-        'This program is not yet available. If you are interested in being notified when it launches, apply for the Prophetic Business Blueprint and indicate your interest in the application.',
+      tagline: 'In development — not currently accepting applications.',
+      hero: 'Kingdom Wealth & Impact is being shaped for a future stage of work around wealth capacity, stewardship, and purposeful impact.',
+      whoFor: '',
+      businessProblem: '',
+      whatItAddresses: '',
+      howItWorks: '',
+      propheticIntegration: '',
+      whatChanges: '',
+      cta: '',
+      relatedCta: '',
+      blueprintRelation: 'This program is in development and is not currently accepting applications.',
     },
     es: {
       name: 'Riqueza de Reino e Impacto',
       slug: 'riqueza-de-reino-e-impacto',
       status: 'coming-soon',
-      tagline: 'Organización financiera, mayordomía e impacto con propósito — próximamente.',
-      description:
-        'Un programa futuro diseñado para ayudar a empresarios cristianos a construir capacidad de riqueza y organizar su vida financiera para mayordomía e impacto orientado al Reino.',
-      whoFor:
-        'Empresarios que han construido una empresa rentable, bien estructurada y cada vez más independiente — y están listos para pensar estratégicamente sobre riqueza, mayordomía e impacto.',
-      businessProblem:
-        'La rentabilidad y la libertad son hitos, no destinos. Muchos fundadores llegan a un punto donde la pregunta cambia de "¿cómo crezco?" a "¿para qué es todo esto?" — y descubren que no tienen una organización financiera clara, ni una estrategia de mayordomía, ni un marco de impacto.',
-      desiredOutcome:
-        'Un fundador con finanzas organizadas, mentalidad de mayordomía, estrategia de construcción de activos y un marco claro para un impacto con propósito, orientado al Reino.',
-      whyItMatters:
-        'La riqueza sin propósito se convierte en carga. La mayordomía sin estrategia se convierte en adivinación. El impacto sin organización se convierte en dispersión. Este programa aborda la dimensión más allá de la rentabilidad y la libertad.',
-      workstreams: [
-        'Organización y claridad financiera',
-        'Marco y filosofía de mayordomía',
-        'Estrategia de construcción de activos y capacidad de riqueza',
-        'Planificación de impacto con propósito',
-        'Diseño de legado orientado al Reino',
-      ],
-      propheticIntegration:
-        'El discernimiento profético será central en este programa — ayudando a los fundadores a entender tiempos, direcciones y los llamados específicos de mayordomía e impacto que Dios ha puesto en sus vidas y empresas.',
-      deliverables: [
-        'Diseño detallado del programa en progreso',
-        'Los entregables completos se publicarán cuando el programa se lance',
-      ],
-      doesNotPromise: [
-        'No se prometen resultados de riqueza.',
-        'No hay garantías de prosperidad.',
-        'No se garantizan retornos financieros específicos.',
-      ],
-      blueprintRelation:
-        'Este programa será parte de la arquitectura basada en diagnóstico una vez disponible. Aún no está disponible para aplicación.',
-      nextStep:
-        'Este programa aún no está disponible. Si te interesa ser notificado cuando se lance, aplica a la Radiografía Empresarial Profética e indica tu interés en la aplicación.',
+      tagline: 'En desarrollo — actualmente no acepta aplicaciones.',
+      hero: 'Riqueza de Reino e Impacto se está diseñando para una etapa futura en torno a la capacidad de generar riqueza, la mayordomía e impacto con propósito.',
+      whoFor: '',
+      businessProblem: '',
+      whatItAddresses: '',
+      howItWorks: '',
+      propheticIntegration: '',
+      whatChanges: '',
+      cta: '',
+      relatedCta: '',
+      blueprintRelation: 'Este programa está en desarrollo y actualmente no acepta aplicaciones.',
     },
   },
   {
@@ -405,81 +192,33 @@ export const programs: ProgramData[] = [
       name: 'Prophetic Business Mentorship',
       slug: 'prophetic-business-mentorship',
       status: 'active',
-      tagline: 'An optional ongoing relationship for continued guidance and discernment.',
-      description:
-        'A flexible, ongoing mentorship relationship that combines business guidance with prophetic discernment. It is optional and may accompany a program, happen between programs, begin after a program, or continue long-term.',
-      whoFor:
-        'Founders who have completed the Prophetic Business Blueprint and want an ongoing relationship for continued strategic guidance, prophetic discernment, and accountability — whether alongside a core program or independently.',
-      businessProblem:
-        'Strategic decisions do not stop between programs. Founders face ongoing questions about direction, timing, people, risks, and opportunities. Without continued access to integrated business and prophetic guidance, momentum can stall and discernment can become intermittent.',
-      desiredOutcome:
-        'A founder with ongoing access to integrated business strategy and prophetic discernment — someone who knows their business, their context, and their walk with God, and can provide guidance as situations arise.',
-      whyItMatters:
-        'Some founders benefit from a continuous relationship rather than discrete interventions alone. Mentorship provides a consistent context for discernment, strategic conversation, and accountability.',
-      workstreams: [
-        'Ongoing strategic guidance and conversation',
-        'Prophetic discernment for emerging decisions',
-        'Accountability and progress review',
-        'Seasonal direction and timing insight',
-        'Integration of business and spiritual direction',
-      ],
-      propheticIntegration:
-        'Prophetic discernment is woven throughout the mentorship relationship — available as situations arise, as decisions emerge, and as the founder navigates the ongoing complexity of leading a business.',
-      deliverables: [
-        'Regular mentorship sessions',
-        'Ongoing access for emerging questions',
-        'Prophetic discernment as situations arise',
-        'Progress review and accountability',
-      ],
-      doesNotPromise: [
-        'Mentorship is not a substitute for a core program when a core program is needed.',
-        'No specific outcome is guaranteed.',
-        'No prescribed frequency without mutual agreement.',
-      ],
-      blueprintRelation:
-        'Mentorship requires completing the Prophetic Business Blueprint first. It may accompany any core program, happen between programs, or continue independently. It is not mandatory.',
-      nextStep:
-        'If you are interested in mentorship, the first step is the Prophetic Business Blueprint. During the application, you can indicate your interest in ongoing mentorship.',
+      tagline: 'An optional ongoing relationship.',
+      hero: 'Continued business guidance and Holy Spirit-led prophetic discernment for entrepreneurs navigating important decisions, transitions, and seasons.',
+      whoFor: 'Christian entrepreneurs who want an ongoing relationship for business counsel and prophetic discernment before, during, or after core programs.',
+      businessProblem: 'Some decisions are not isolated events. They unfold across seasons of growth, uncertainty, leadership, and change. An ongoing relationship can bring continuity when it is needed.',
+      whatItAddresses: 'Strategic reflection, decision review, leadership questions, and prophetic discernment in the context of ongoing work.',
+      howItWorks: 'Mentorship is not a substitute for the Blueprint\'s initial diagnosis and is not automatically prescribed. It may be considered when ongoing accompaniment is needed.',
+      propheticIntegration: 'Prophetic discernment is woven throughout the mentorship relationship.',
+      whatChanges: 'Mentorship is optional and selective. Specific scope and cadence are defined only if the relationship proceeds.',
+      cta: 'Contact Company of Profits about Mentorship.',
+      relatedCta: 'Explore the Prophetic Business Blueprint.',
+      blueprintRelation: 'Mentorship is not a substitute for the Blueprint and is not automatically prescribed.',
     },
     es: {
       name: 'Mentoría Empresarial Profética',
       slug: 'mentoria-empresarial-profetica',
       status: 'active',
-      tagline: 'Una relación continua y opcional para guía y discernimiento permanente.',
-      description:
-        'Una relación flexible y continua de mentoría que combina guía empresarial con discernimiento profético. Es opcional y puede acompañar un programa, darse entre programas, comenzar después de un programa o continuar a largo plazo.',
-      whoFor:
-        'Empresarios que han completado la Radiografía Empresarial Profética y desean una relación continua para guía estratégica, discernimiento profético y rendición de cuentas — ya sea junto a un programa core o de manera independiente.',
-      businessProblem:
-        'Las decisiones estratégicas no se detienen entre programas. Los fundadores enfrentan preguntas continuas sobre dirección, tiempos, personas, riesgos y oportunidades. Sin acceso continuo a guía empresarial y profética integrada, el impulso puede estancarse y el discernimiento puede volverse intermitente.',
-      desiredOutcome:
-        'Un fundador con acceso continuo a estrategia empresarial integrada y discernimiento profético — alguien que conoce su empresa, su contexto y su caminar con Dios, y puede proveer guía a medida que surgen las situaciones.',
-      whyItMatters:
-        'Algunos fundadores se benefician de una relación continua en lugar de solo intervenciones discretas. La mentoría provee un contexto consistente para discernimiento, conversación estratégica y rendición de cuentas.',
-      workstreams: [
-        'Guía estratégica y conversación continua',
-        'Discernimiento profético para decisiones emergentes',
-        'Rendición de cuentas y revisión de progreso',
-        'Dirección estacional y discernimiento de tiempos',
-        'Integración de dirección empresarial y espiritual',
-      ],
-      propheticIntegration:
-        'El discernimiento profético está entretejido en toda la relación de mentoría — disponible a medida que surgen las situaciones, cuando emergen decisiones y mientras el fundador navega la complejidad continua de dirigir una empresa.',
-      deliverables: [
-        'Sesiones regulares de mentoría',
-        'Acceso continuo para preguntas emergentes',
-        'Discernimiento profético según surjan las situaciones',
-        'Revisión de progreso y rendición de cuentas',
-      ],
-      doesNotPromise: [
-        'La mentoría no sustituye un programa core cuando se necesita un programa core.',
-        'No se garantiza un resultado específico.',
-        'No se prescribe una frecuencia sin acuerdo mutuo.',
-      ],
-      blueprintRelation:
-        'La mentoría requiere completar primero la Radiografía Empresarial Profética. Puede acompañar cualquier programa core, darse entre programas o continuar de manera independiente. No es obligatoria.',
-      nextStep:
-        'Si te interesa la mentoría, el primer paso es la Radiografía Empresarial Profética. Durante la aplicación, puedes indicar tu interés en mentoría continua.',
+      tagline: 'Una relación opcional y continua.',
+      hero: 'Guía empresarial continua y discernimiento profético guiado por el Espíritu Santo para empresarios que atraviesan decisiones importantes, transiciones y temporadas complejas.',
+      whoFor: 'Empresarios cristianos que desean una relación continua de consejo empresarial y discernimiento profético antes, durante o después de los programas principales.',
+      businessProblem: 'Algunas decisiones no son hechos aislados. Se desarrollan a lo largo de temporadas de crecimiento, incertidumbre, liderazgo y cambio. Una relación continua puede aportar continuidad cuando sea necesaria.',
+      whatItAddresses: 'Análisis estratégico, revisión de decisiones, preguntas de liderazgo y discernimiento profético dentro del trabajo continuo del empresario.',
+      howItWorks: 'La Mentoría no sustituye el diagnóstico inicial de la Radiografía ni se prescribe automáticamente. Puede considerarse cuando el acompañamiento continuo sea necesario.',
+      propheticIntegration: 'El discernimiento profético está entretejido en toda la relación de mentoría.',
+      whatChanges: 'La Mentoría es opcional y selectiva. El alcance y la frecuencia específicos se definen únicamente si la relación avanza.',
+      cta: 'Contacta a Company of Profits sobre la Mentoría.',
+      relatedCta: 'Conoce la Radiografía Empresarial Profética.',
+      blueprintRelation: 'La Mentoría no sustituye la Radiografía ni se prescribe automáticamente.',
     },
   },
 ];

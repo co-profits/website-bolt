@@ -29,6 +29,8 @@ export function Header() {
     };
   }, [isOpen]);
 
+  const navItems = t.nav.slice(1);
+
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
@@ -42,8 +44,8 @@ export function Header() {
           <Logo variant="dark" className="h-7 lg:h-9" />
         </Link>
 
-        <nav className="hidden items-center gap-8 lg:flex" aria-label="Primary">
-          {t.nav.slice(1, -1).map((item) => (
+        <nav className="hidden items-center gap-6 lg:flex" aria-label="Primary">
+          {navItems.map((item) => (
             <NavLink
               key={item.path}
               to={item.path}

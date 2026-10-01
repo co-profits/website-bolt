@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useLang } from '@/i18n/LangContext';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import { SEO } from '@/components/SEO';
@@ -9,6 +10,25 @@ export function FAQPage() {
   const { t, lang } = useLang();
   const ref = useScrollReveal<HTMLElement>();
   const f = t.faqPage;
+
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.text = JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: f.faqs.map((faq) => ({
+        '@type': 'Question',
+        name: faq.q,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: faq.a,
+        },
+      })),
+    });
+    document.head.appendChild(script);
+    return () => { document.head.removeChild(script); };
+  }, [f.faqs]);
 
   return (
     <>
@@ -36,7 +56,7 @@ export function FAQPage() {
           </div>
         </section>
 
-        <CTABlock title={t.cta.finalCtaTitle} subtitle={t.cta.finalCtaSubtitle} />
+        <CTABlock title={t.cta.applyBlueprint} buttonLabel={t.cta.applyBlueprint} />
       </article>
     </>
   );
