@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react';
+import { useState, useRef, useEffect, type FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { CheckCircle2, AlertCircle, Info } from 'lucide-react';
 import { useLang } from '@/i18n/LangContext';
@@ -10,6 +10,19 @@ import { supabase } from '@/lib/supabase';
 
 type FormState = Record<string, string>;
 
+function getUtms(): Record<string, string> {
+  const params = new URLSearchParams(window.location.search);
+  return {
+    utm_source: params.get('utm_source') || '',
+    utm_medium: params.get('utm_medium') || '',
+    utm_campaign: params.get('utm_campaign') || '',
+  };
+}
+
+function generateRequestId(): string {
+  return `req_${Date.now()}_${Math.random().toString(36).slice(2, 11)}`;
+}
+
 export function ApplyPage() {
   const { t, lang } = useLang();
   const ref = useScrollReveal<HTMLElement>();
@@ -20,6 +33,11 @@ export function ApplyPage() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [step, setStep] = useState(1);
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'duplicate' | 'error'>('idle');
+  const [requestId] = useState(() => generateRequestId());
+  const errorSummaryRef = useRef<HTMLDivElement>(null);
+
+  const utms = getUtms();
+  const landingPage = typeof window !== 'undefined' ? window.location.origin + window.location.pathname : '';
 
   const update = (name: string, value: string) => {
     setForm((prev) => ({ ...prev, [name]: value }));
@@ -31,6 +49,17 @@ export function ApplyPage() {
       });
     }
   };
+
+  useEffect(() => {
+    if (Object.keys(errors).length > 0 && errorSummaryRef.current) {
+      errorSummaryRef.current?.focus();
+      const firstField = document.getElementById(`field-${Object.keys(errors)[0]}`);
+      if (firstField) {
+        firstField.focus();
+        firstField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+  }, [errors]);
 
   const validateStep = (currentStep: number): boolean => {
     const newErrors: Record<string, string> = {};
@@ -54,8 +83,6 @@ export function ApplyPage() {
     } else if (currentStep === 3) {
       if (!form.desiredChange || form.desiredChange.trim().length < 20) newErrors.desiredChange = minErr;
       if (!form.christianAlignment) newErrors.christianAlignment = err;
-      if (!form.phone || form.phone.trim().length < 1) newErrors.phone = err;
-      if (!form.source) newErrors.source = err;
     }
 
     setErrors(newErrors);
@@ -78,6 +105,11 @@ export function ApplyPage() {
     e.preventDefault();
     if (!validateStep(3)) return;
 
+    if (form.formTrap) {
+      setStatus('success');
+      return;
+    }
+
     setStatus('submitting');
     try {
       const payload = {
@@ -98,8 +130,15 @@ export function ApplyPage() {
         desired_change: form.desiredChange || null,
         christian_alignment: form.christianAlignment || null,
         source: form.source || null,
+        source_detail: form.sourceDetail || null,
         additional_context: form.additionalContext || null,
         consent_insights: form.consentInsights === 'true',
+        client_request_id: requestId,
+        submitted_at_client: new Date().toISOString(),
+        landing_page: landingPage || null,
+        utm_source: utms.utm_source || null,
+        utm_medium: utms.utm_medium || null,
+        utm_campaign: utms.utm_campaign || null,
       };
 
       const { error } = await supabase.from('blueprint_applications').insert(payload);
@@ -146,6 +185,9 @@ export function ApplyPage() {
 
   const showFounderPricing = form.founderCount && parseInt(form.founderCount) > 2;
   const showPrimaryMarket = form.country && form.country !== '';
+  const showPropheticQuestions = form.christianAlignment === 'questions' || form.christianAlignment === 'no';
+  const showSourceDetail = form.source && form.source !== '';
+  const hasErrors = Object.keys(errors).length > 0;
 
   return (
     <>
@@ -181,7 +223,7 @@ export function ApplyPage() {
               <p className="text-sm font-medium text-ink-300">
                 {a.stepLabels.step} {step} {a.stepLabels.of} 3
               </p>
-              <div className="mt-3 flex gap-2">
+              <div className="mt-3 flex gap-2" role="progressbar" aria-valuenow={step} aria-valuemin={1} aria-valuemax={3}>
                 {[1, 2, 3].map((s) => (
                   <div
                     key={s}
@@ -197,6 +239,30 @@ export function ApplyPage() {
               </p>
             </div>
 
+            {/* Error summary */}
+            {hasErrors && (
+              <div
+                ref={errorSummaryRef}
+                tabIndex={-1}
+                role="alert"
+                className="mb-8 rounded-lg border border-red-500/30 bg-red-500/10 p-4 focus:outline-none"
+              >
+                <p className="text-sm font-semibold text-red-300">{a.errorSummary}</p>
+                <ul className="mt-2 list-disc pl-5 text-sm text-ink-300">
+                  {Object.entries(errors).map(([field, msg]) => (
+                    <li key={field}>
+                      <a
+                        href={`#field-${field}`}
+                        className="text-ink-200 underline hover:text-white"
+                      >
+                        {msg}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
             {status === 'error' && (
               <div className="mb-8 flex items-start gap-3 rounded-lg border border-red-500/30 bg-red-500/10 p-4">
                 <AlertCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-red-400" aria-hidden="true" />
@@ -208,6 +274,20 @@ export function ApplyPage() {
             )}
 
             <form onSubmit={handleSubmit} noValidate>
+              {/* Honeypot — visually hidden, must remain empty */}
+              <div className="absolute -left-[9999px]" aria-hidden="true">
+                <label htmlFor="field-formTrap">Leave this field empty</label>
+                <input
+                  id="field-formTrap"
+                  name="formTrap"
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={form.formTrap || ''}
+                  onChange={(e) => update('formTrap', e.target.value)}
+                />
+              </div>
+
               {/* Step 1 — Founder and company */}
               {step === 1 && (
                 <fieldset className="space-y-6 animate-on-scroll">
@@ -266,7 +346,7 @@ export function ApplyPage() {
                 </fieldset>
               )}
 
-              {/* Step 3 — Desired change and alignment */}
+              {/* Step 3 — Challenge, outcome, and fit */}
               {step === 3 && (
                 <fieldset className="space-y-6 animate-on-scroll">
                   <legend className="mb-6 border-b border-ink-700/50 pb-3 font-display text-lg text-white">
@@ -274,9 +354,23 @@ export function ApplyPage() {
                   </legend>
                   <FormField label={f.desiredChange.label} name="desiredChange" type="textarea" required placeholder={f.desiredChange.placeholder} value={form.desiredChange || ''} onChange={(v) => update('desiredChange', v)} error={errors.desiredChange} />
                   <FormField label={f.christianAlignment.label} name="christianAlignment" type="select" required placeholder={f.christianAlignment.placeholder} options={f.christianAlignment.options} value={form.christianAlignment || ''} onChange={(v) => update('christianAlignment', v)} error={errors.christianAlignment} />
-                  <FormField label={f.phone.label} name="phone" required placeholder={f.phone.placeholder} value={form.phone || ''} onChange={(v) => update('phone', v)} error={errors.phone} />
-                  <FormField label={f.source.label} name="source" type="select" required placeholder={f.source.placeholder} options={f.source.options} value={form.source || ''} onChange={(v) => update('source', v)} error={errors.source} />
-                  <FormField label={f.additionalContext.label} name="additionalContext" type="textarea" placeholder={f.additionalContext.placeholder} value={form.additionalContext || ''} onChange={(v) => update('additionalContext', v)} />
+
+                  {/* Conditional: prophetic questions helper */}
+                  {showPropheticQuestions && (
+                    <div className="rounded-lg border border-ink-700/50 bg-ink-800/20 p-4">
+                      <p className="text-xs leading-relaxed text-ink-300">{a.propheticQuestionsHelper}</p>
+                    </div>
+                  )}
+
+                  <FormField label={f.phone.label} name="phone" placeholder={f.phone.placeholder} help={f.phone.help} value={form.phone || ''} onChange={(v) => update('phone', v)} />
+                  <FormField label={f.source.label} name="source" type="select" placeholder={f.source.placeholder} options={f.source.options} value={form.source || ''} onChange={(v) => update('source', v)} />
+
+                  {/* Conditional: source detail */}
+                  {showSourceDetail && (
+                    <FormField label={f.sourceDetail.label} name="sourceDetail" placeholder={f.sourceDetail.placeholder} help={f.sourceDetail.help} value={form.sourceDetail || ''} onChange={(v) => update('sourceDetail', v)} />
+                  )}
+
+                  <FormField label={f.additionalContext.label} name="additionalContext" type="textarea" placeholder={f.additionalContext.placeholder} help={f.additionalContext.help} value={form.additionalContext || ''} onChange={(v) => update('additionalContext', v)} />
 
                   {/* Optional Insights consent */}
                   <div className="rounded-lg border border-ink-700/50 bg-ink-800/20 p-4">
@@ -286,7 +380,7 @@ export function ApplyPage() {
                   {/* Required consent */}
                   <div className="rounded-lg border border-ink-700/50 bg-ink-800/30 p-4">
                     <p className="text-xs leading-relaxed text-ink-300">
-                      {a.consentRequired.split('See our Privacy Policy.')[0]}
+                      {a.consentRequired.split(lang === 'en' ? 'See our Privacy Policy.' : 'Consulta nuestra')[0]}
                       <Link to={privacyPath} className="text-brand-light-green underline hover:text-brand-light-yellow">
                         {t.footer.privacyPolicy}
                       </Link>

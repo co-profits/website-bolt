@@ -149,10 +149,12 @@ export interface Translation {
     back: string;
     submit: string;
     submitting: string;
+    errorSummary: string;
     fields: Record<string, { label: string; placeholder?: string; help?: string; options?: SelectOption[]; required?: boolean }>;
     founderPricingNote: string;
     consentRequired: string;
     consentInsights: string;
+    propheticQuestionsHelper: string;
     successTitle: string;
     successBody: string;
     duplicate: string;
@@ -397,11 +399,12 @@ const en: Translation = {
     intro: 'The application helps us understand your business and evaluate whether the Blueprint is the appropriate next step. It is not a request for sensitive financial documents, and submitting it does not mean you have been accepted.',
     sectionHeading: 'Tell us where the business is now and what you think needs to change.',
     helper: 'Answer at the level that is useful for an initial review. Do not include passwords, confidential documents, bank details, or sensitive personal information that is not necessary at this stage.',
-    stepLabels: { step: 'Step', of: 'of', step1: 'Step 1 — Founder and company', step2: 'Step 2 — Business context', step3: 'Step 3 — Desired change and alignment' },
+    stepLabels: { step: 'Step', of: 'of', step1: 'Step 1 — Founder and company', step2: 'Step 2 — Business context', step3: 'Step 3 — Challenge, outcome, and fit' },
     next: 'Continue',
     back: 'Back',
     submit: 'Submit Application',
     submitting: 'Submitting...',
+    errorSummary: 'Please review the following:',
     fields: {
       fullName: { label: 'Full name', placeholder: 'Your full name', required: true },
       email: { label: 'Work email', placeholder: 'you@company.com', required: true },
@@ -449,13 +452,16 @@ const en: Translation = {
         { value: 'questions', label: 'I have questions about this' },
         { value: 'no', label: 'No' },
       ]},
-      phone: { label: 'Phone', placeholder: 'Your phone number' },
+      phone: { label: 'Phone', placeholder: 'Your phone number', help: 'Optional. Max 40 characters.' },
       source: { label: 'How did you hear about Company of Profits?', placeholder: 'Select...', options: [
         { value: 'linkedin', label: 'LinkedIn' }, { value: 'instagram', label: 'Instagram' },
         { value: 'referral', label: 'Referral' }, { value: 'search-engine', label: 'Search engine' },
         { value: 'other', label: 'Other' },
       ]},
-      additionalContext: { label: 'Additional context', placeholder: 'Anything else you would like us to know at this stage...' },
+      sourceDetail: { label: 'Source detail', placeholder: 'e.g. a person\'s name, a group, a specific page...', help: 'Optional. Max 160 characters.' },
+      additionalContext: { label: 'Additional context', placeholder: 'Anything else you would like us to know at this stage...', help: 'Do not include confidential documents or sensitive personal information.' },
+    },
+    propheticQuestionsHelper: 'If you have questions about the Christian or prophetic dimension, you may share them here. Please do not share sensitive spiritual or personal details.',
     },
     founderPricingNote: 'The Blueprint base scope includes up to 2 active founding partners. Additional partners are priced at +USD $100 per partner from partner #3.',
     consentRequired: 'By submitting this application, you authorize Company of Profits to use the information you provide to review your application, evaluate whether the Blueprint is appropriate for your business, and communicate with you about it. See our Privacy Policy.',
@@ -704,11 +710,12 @@ const es: Translation = {
     intro: 'La aplicación nos ayuda a entender tu empresa y evaluar si la Radiografía es el siguiente paso adecuado. No solicitamos documentos financieros sensibles, y enviar la aplicación no significa que hayas sido aceptado.',
     sectionHeading: 'Cuéntanos dónde está hoy tu empresa y qué crees que necesita cambiar.',
     helper: 'Responde con el nivel de detalle útil para una primera revisión. No incluyas contraseñas, documentos confidenciales, datos bancarios ni información personal sensible que no sea necesaria en esta etapa.',
-    stepLabels: { step: 'Paso', of: 'de', step1: 'Paso 1 — Fundador y empresa', step2: 'Paso 2 — Contexto empresarial', step3: 'Paso 3 — Cambio deseado y afinidad' },
+    stepLabels: { step: 'Paso', of: 'de', step1: 'Paso 1 — Fundador y empresa', step2: 'Paso 2 — Contexto empresarial', step3: 'Paso 3 — Reto, resultado y compatibilidad' },
     next: 'Continuar',
     back: 'Atrás',
     submit: 'Enviar aplicación',
     submitting: 'Enviando...',
+    errorSummary: 'Por favor revisa lo siguiente:',
     fields: {
       fullName: { label: 'Nombre completo', placeholder: 'Tu nombre completo', required: true },
       email: { label: 'Correo electrónico de trabajo', placeholder: 'tu@empresa.com', required: true },
@@ -756,13 +763,16 @@ const es: Translation = {
         { value: 'questions', label: 'Tengo preguntas sobre esto' },
         { value: 'no', label: 'No' },
       ]},
-      phone: { label: 'Teléfono', placeholder: 'Tu número de teléfono' },
+      phone: { label: 'Teléfono', placeholder: 'Tu número de teléfono', help: 'Opcional. Máximo 40 caracteres.' },
       source: { label: '¿Cómo te enteraste sobre Company of Profits?', placeholder: 'Selecciona...', options: [
         { value: 'linkedin', label: 'LinkedIn' }, { value: 'instagram', label: 'Instagram' },
         { value: 'referral', label: 'Referido' }, { value: 'search-engine', label: 'Motor de búsqueda' },
         { value: 'other', label: 'Otro' },
       ]},
-      additionalContext: { label: 'Contexto adicional', placeholder: 'Algo más que quieras que sepamos en esta etapa...' },
+      sourceDetail: { label: 'Detalle de la fuente', placeholder: 'Ej. el nombre de una persona, un grupo, una página específica...', help: 'Opcional. Máximo 160 caracteres.' },
+      additionalContext: { label: 'Contexto adicional', placeholder: 'Algo más que quieras que sepamos en esta etapa...', help: 'No incluyas documentos confidenciales ni información personal sensible.' },
+    },
+    propheticQuestionsHelper: 'Si tienes preguntas sobre la dimensión cristiana o profética, puedes compartirlas aquí. No incluyas detalles espirituales o personales sensibles.',
     },
     founderPricingNote: 'El alcance base de la Radiografía incluye hasta 2 socios fundadores activos. Los socios adicionales tienen un costo de +USD $100 por socio a partir del tercero.',
     consentRequired: 'Al enviar esta aplicación, autorizas a Company of Profits a utilizar la información que proporcionas para revisar tu aplicación, evaluar si la Radiografía es adecuada para tu empresa y comunicarse contigo al respecto. Consulta nuestra Política de Privacidad.',
