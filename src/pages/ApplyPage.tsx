@@ -7,8 +7,23 @@ import { SEO } from '@/components/SEO';
 import { PageHeader } from '@/components/PageHeader';
 import { FormField } from '@/components/FormField';
 import { supabase } from '@/lib/supabase';
+import { trackEvent } from '@/lib/analytics';
 
 type FormState = Record<string, string>;
+
+const MAX_LENGTHS: Record<string, number> = {
+  fullName: 120,
+  email: 254,
+  companyName: 160,
+  website: 2048,
+  primaryMarket: 120,
+  industry: 160,
+  primaryConstraint: 1500,
+  desiredChange: 1500,
+  phone: 40,
+  sourceDetail: 160,
+  additionalContext: 1500,
+};
 
 function getUtms(): Record<string, string> {
   const params = new URLSearchParams(window.location.search);
@@ -23,6 +38,16 @@ function generateRequestId(): string {
   return `req_${Date.now()}_${Math.random().toString(36).slice(2, 11)}`;
 }
 
+function isValidUrl(url: string): boolean {
+  if (!url) return true;
+  try {
+    const u = new URL(url);
+    return u.protocol === 'http:' || u.protocol === 'https:';
+  } catch {
+    return false;
+  }
+}
+
 export function ApplyPage() {
   const { t, lang } = useLang();
   const ref = useScrollReveal<HTMLElement>();
@@ -35,12 +60,29 @@ export function ApplyPage() {
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'duplicate' | 'error'>('idle');
   const [requestId] = useState(() => generateRequestId());
   const errorSummaryRef = useRef<HTMLDivElement>(null);
+  const hasTrackedPageView = useRef(false);
+  const hasTrackedStarted = useRef(false);
+  const trackedSteps = useRef<Set<number>>(new Set());
 
   const utms = getUtms();
   const landingPage = typeof window !== 'undefined' ? window.location.origin + window.location.pathname : '';
+  const landing_page_param = lang === 'en' ? '/en/apply' : '/es/aplicar';
+
+  useEffect(() => {
+    if (!hasTrackedPageView.current) {
+      hasTrackedPageView.current = true;
+      trackEvent('application_page_viewed', { language: lang, route: landing_page_param, landing_page: landingPage });
+    }
+    if (!hasTrackedStarted.current) {
+      hasTrackedStarted.current = true;
+      trackEvent('application_started', { language: lang, route: landing_page_param });
+    }
+  }, [lang, landing_page_param]);
 
   const update = (name: string, value: string) => {
-    setForm((prev) => ({ ...prev, [name]: value }));
+    const max = MAX_LENGTHS[name];
+    const trimmed = max ? value.slice(0, max) : value;
+    setForm((prev) => ({ ...prev, [name]: trimmed }));
     if (errors[name]) {
       setErrors((prev) => {
         const next = { ...prev };
@@ -49,6 +91,13 @@ export function ApplyPage() {
       });
     }
   };
+
+  useEffect(() => {
+    if (!trackedSteps.current.has(step)) {
+      trackedSteps.current.add(step);
+      trackEvent('application_step_viewed', { language: lang, step_number: step });
+    }
+  }, [step, lang]);
 
   useEffect(() => {
     if (Object.keys(errors).length > 0 && errorSummaryRef.current) {
@@ -71,6 +120,7 @@ export function ApplyPage() {
       if (!form.fullName || form.fullName.trim().length < 2) newErrors.fullName = err;
       if (!form.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) newErrors.email = emailErr;
       if (!form.companyName || form.companyName.trim().length < 2) newErrors.companyName = err;
+      if (form.website && !isValidUrl(form.website)) newErrors.website = a.websiteError;
       if (!form.country) newErrors.country = err;
       if (!form.preferredLanguage) newErrors.preferredLanguage = err;
       if (!form.industry || form.industry.trim().length < 2) newErrors.industry = err;
@@ -91,6 +141,7 @@ export function ApplyPage() {
 
   const handleNext = () => {
     if (validateStep(step)) {
+      trackEvent('application_step_completed', { language: lang, step_number: step });
       setStep((prev) => Math.min(prev + 1, 3));
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -109,6 +160,13 @@ export function ApplyPage() {
       setStatus('success');
       return;
     }
+
+    const fieldCount = Object.keys(form).filter((k) => k !== 'formTrap' && form[k]).length;
+    trackEvent('application_submit_attempted', {
+      language: lang,
+      field_count: fieldCount,
+      'client-side validity': 'valid',
+    });
 
     setStatus('submitting');
     try {
@@ -146,14 +204,26 @@ export function ApplyPage() {
       if (error) {
         if (error.code === '23505') {
           setStatus('duplicate');
+          trackEvent('application_duplicate', { language: lang, 'outcome code': 'duplicate' });
         } else {
           throw error;
         }
       } else {
         setStatus('success');
+        trackEvent('application_submitted', {
+          language: lang,
+          source: form.source || undefined,
+          campaign: utms.utm_campaign || undefined,
+          'outcome code': 'accepted',
+        });
       }
     } catch {
       setStatus('error');
+      trackEvent('application_submission_failed', {
+        language: lang,
+        'error category': 'server_error',
+        retryable: true,
+      });
     }
   };
 
@@ -165,7 +235,7 @@ export function ApplyPage() {
         <SEO
           title={t.seo.applyTitle}
           description={t.seo.applyDesc}
-          path={lang === 'en' ? '/en/apply' : '/es/aplicar'}
+          path={landing_page_param}
           alternates={{ en: '/en/apply', es: '/es/aplicar' }}
         />
         <section className="flex min-h-[70vh] items-center justify-center bg-ink-900 pt-24">
@@ -189,12 +259,17 @@ export function ApplyPage() {
   const showSourceDetail = form.source && form.source !== '';
   const hasErrors = Object.keys(errors).length > 0;
 
+  const consentPrefix = a.consentRequired.replace(
+    lang === 'en' ? ' See our Privacy Policy.' : ' Consulta nuestra Política de Privacidad.',
+    ''
+  );
+
   return (
     <>
       <SEO
         title={t.seo.applyTitle}
         description={t.seo.applyDesc}
-        path={lang === 'en' ? '/en/apply' : '/es/aplicar'}
+        path={landing_page_param}
         alternates={{ en: '/en/apply', es: '/es/aplicar' }}
       />
       <article ref={ref}>
@@ -298,7 +373,7 @@ export function ApplyPage() {
                     <FormField label={f.fullName.label} name="fullName" required placeholder={f.fullName.placeholder} value={form.fullName || ''} onChange={(v) => update('fullName', v)} error={errors.fullName} />
                     <FormField label={f.email.label} name="email" type="email" required placeholder={f.email.placeholder} value={form.email || ''} onChange={(v) => update('email', v)} error={errors.email} />
                     <FormField label={f.companyName.label} name="companyName" required placeholder={f.companyName.placeholder} value={form.companyName || ''} onChange={(v) => update('companyName', v)} error={errors.companyName} />
-                    <FormField label={f.website.label} name="website" placeholder={f.website.placeholder} value={form.website || ''} onChange={(v) => update('website', v)} />
+                    <FormField label={f.website.label} name="website" placeholder={f.website.placeholder} value={form.website || ''} onChange={(v) => update('website', v)} error={errors.website} />
                     <FormField label={f.country.label} name="country" type="select" required placeholder={f.country.placeholder} options={f.country.options} value={form.country || ''} onChange={(v) => update('country', v)} error={errors.country} />
                     <FormField label={f.preferredLanguage.label} name="preferredLanguage" type="select" required placeholder={f.preferredLanguage.placeholder} options={f.preferredLanguage.options} value={form.preferredLanguage || ''} onChange={(v) => update('preferredLanguage', v)} error={errors.preferredLanguage} />
                     <FormField label={f.industry.label} name="industry" required placeholder={f.industry.placeholder} value={form.industry || ''} onChange={(v) => update('industry', v)} error={errors.industry} />
@@ -380,11 +455,11 @@ export function ApplyPage() {
                   {/* Required consent */}
                   <div className="rounded-lg border border-ink-700/50 bg-ink-800/30 p-4">
                     <p className="text-xs leading-relaxed text-ink-300">
-                      {a.consentRequired.split(lang === 'en' ? 'See our Privacy Policy.' : 'Consulta nuestra')[0]}
+                      {consentPrefix}{' '}
                       <Link to={privacyPath} className="text-brand-light-green underline hover:text-brand-light-yellow">
                         {t.footer.privacyPolicy}
                       </Link>
-                      {lang === 'en' ? '.' : '.'}
+                      .
                     </p>
                   </div>
 

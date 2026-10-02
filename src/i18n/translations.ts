@@ -164,6 +164,7 @@ export interface Translation {
     fieldError: string;
     emailError: string;
     minLengthError: string;
+    websiteError: string;
   };
   contactPage: {
     title: string;
@@ -474,6 +475,7 @@ const en: Translation = {
     fieldError: 'This field is required.',
     emailError: 'Please enter a valid email address.',
     minLengthError: 'Please enter at least 20 characters.',
+    websiteError: 'Please enter a valid website address (http or https).',
   },
   contactPage: {
     title: 'Contact Us',
@@ -784,6 +786,7 @@ const es: Translation = {
     fieldError: 'Este campo es requerido.',
     emailError: 'Por favor ingresa un correo válido.',
     minLengthError: 'Por favor ingresa al menos 20 caracteres.',
+    websiteError: 'Por favor ingresa una dirección válida (http o https).',
   },
   contactPage: {
     title: 'Contáctanos',
