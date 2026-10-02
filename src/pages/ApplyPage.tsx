@@ -100,6 +100,15 @@ export function ApplyPage() {
   }, [step, lang]);
 
   useEffect(() => {
+    return () => {
+      if (status === 'idle' || status === 'error') {
+        trackEvent('application_abandoned', { language: lang, last_step: step });
+      }
+    };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [status, step, lang]);
+
+  useEffect(() => {
     if (Object.keys(errors).length > 0 && errorSummaryRef.current) {
       errorSummaryRef.current?.focus();
       const firstField = document.getElementById(`field-${Object.keys(errors)[0]}`);
