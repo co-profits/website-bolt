@@ -515,7 +515,7 @@ const en: Translation = {
     applyDesc: 'Submit your application for the Prophetic Business Blueprint. The application helps us understand your business and evaluate whether the Blueprint is the appropriate next step.',
     contactTitle: 'Contact Company of Profits',
     contactDesc: 'Contact Company of Profits for partnerships, alliances, referrals, media, speaking, or other business inquiries.',
-  },
+  }
 };
 
 const es: Translation = {
