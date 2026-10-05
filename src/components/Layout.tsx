@@ -6,7 +6,7 @@ import { AnalyticsLoader } from './AnalyticsLoader';
 import { useScrollToTop } from '@/hooks/useScrollToTop';
 import { siteConfig } from '@/config/site';
 
-export function Layout({ children }: { ReactNode }) {
+export function Layout({ children }: { children: ReactNode }) {
   useScrollToTop();
 
   useEffect(() => {
