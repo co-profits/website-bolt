@@ -93,12 +93,12 @@ export function Footer() {
                     className="text-sm text-ink-300 transition-colors hover:text-white"
                   >
                     {lang === 'en' ? p.en.name : p.es.name}
-                    {p.category === 'future' && (
-                      <span className="ml-2 text-xs text-brand-purple">
-                        {t.common.inDevelopment}
-                      </span>
-                    )}
                   </Link>
+                  {p.category === 'future' && (
+                    <span className="ml-2 block text-xs text-brand-purple" aria-label={lang === 'en' ? 'In development' : 'En desarrollo'}>
+                      {lang === 'en' ? '— In development' : '— En desarrollo'}
+                    </span>
+                  )}
                 </li>
               ))}
             </ul>

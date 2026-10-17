@@ -4,6 +4,12 @@ import { useLang } from '@/i18n/LangContext';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import { SEO } from '@/components/SEO';
 import { CTABlock } from '@/components/CTABlock';
+import { SystemDiagram } from '@/components/SystemDiagram';
+
+const HOME_IMG_ALT_EN = 'An anonymous editorial scene representing the weight of founder dependence in an established business.';
+const HOME_IMG_ALT_ES = 'Una escena editorial anónima que representa el peso de la dependencia del fundador en una empresa establecida.';
+const HOME_IMG_SRC = '/assets/images/company-of-profits-hombre-de-negocios-empresario-pensando-en-escritorio.webp';
+const HOME_IMG_DIM = { w: 1792, h: 2400 };
 
 export function HomePage() {
   const { t, lang, applyPath, blueprintPath } = useLang();
@@ -50,29 +56,62 @@ export function HomePage() {
           </div>
         </section>
 
-        {/* Problem */}
+        {/* Problem / Cost of dependence */}
         <section className="border-t border-ink-700/50 bg-ink-950 py-20 lg:py-28">
           <div className="container-wide">
-            <div className="max-w-3xl">
-              <h2 className="font-display text-display-md animate-on-scroll text-balance text-white">
-                {h.problemTitle}
-              </h2>
-              <p className="mt-6 text-lg leading-relaxed text-ink-300 animate-on-scroll">{h.problemIntro}</p>
-            </div>
-            <div className="mt-12 max-w-3xl space-y-8">
-              {h.problemItems.map((item, i) => (
-                <div
-                  key={i}
-                  className="border-l-2 border-brand-light-green/30 pl-6 animate-on-scroll"
-                  style={{ transitionDelay: `${i * 80}ms` }}
-                >
-                  <h3 className="text-base font-semibold text-white">{item.title}</h3>
-                  <p className="mt-2 text-base leading-relaxed text-ink-300">{item.desc}</p>
+            <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_auto] lg:gap-16">
+              <div className="max-w-3xl">
+                <h2 className="font-display text-display-md animate-on-scroll text-balance text-white">
+                  {h.problemTitle}
+                </h2>
+                <p className="mt-6 text-lg leading-relaxed text-ink-300 animate-on-scroll">{h.problemIntro}</p>
+                <div className="mt-12 space-y-8">
+                  {h.problemItems.map((item, i) => (
+                    <div
+                      key={i}
+                      className="border-l-2 border-brand-light-green/30 pl-6 animate-on-scroll"
+                      style={{ transitionDelay: `${i * 80}ms` }}
+                    >
+                      <h3 className="text-base font-semibold text-white">{item.title}</h3>
+                      <p className="mt-2 text-base leading-relaxed text-ink-300">{item.desc}</p>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
+              {/* Editorial side panel — COP-W2-IMG-01 */}
+              <div className="hidden lg:block animate-on-scroll">
+                <div className="relative w-[280px] flex-shrink-0 overflow-hidden rounded-xl border border-ink-700/50">
+                  <img
+                    src={HOME_IMG_SRC}
+                    alt={lang === 'en' ? HOME_IMG_ALT_EN : HOME_IMG_ALT_ES}
+                    width={HOME_IMG_DIM.w}
+                    height={HOME_IMG_DIM.h}
+                    loading="lazy"
+                    decoding="async"
+                    className="block h-auto w-full"
+                    style={{ aspectRatio: '1792 / 2400' }}
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </section>
+
+        {/* Mobile editorial image — below CTAs, before problem block */}
+        <div className="block px-4 pb-4 lg:hidden">
+          <div className="relative w-full overflow-hidden rounded-xl border border-ink-700/50">
+            <img
+              src={HOME_IMG_SRC}
+              alt={lang === 'en' ? HOME_IMG_ALT_EN : HOME_IMG_ALT_ES}
+              width={HOME_IMG_DIM.w}
+              height={HOME_IMG_DIM.h}
+              loading="lazy"
+              decoding="async"
+              className="block h-auto w-full"
+              style={{ aspectRatio: '4 / 5', objectFit: 'cover' }}
+            />
+          </div>
+        </div>
 
         {/* System */}
         <section className="border-t border-ink-700/50 py-20 lg:py-28">
@@ -83,41 +122,9 @@ export function HomePage() {
               </h2>
               <p className="mt-6 text-base leading-relaxed text-ink-200 animate-on-scroll">{h.systemBody}</p>
             </div>
-            {/* System diagram */}
+            {/* System diagram — HOME-SYSTEM-DIAGRAM */}
             <div className="mt-12 animate-on-scroll">
-              <svg viewBox="0 0 400 280" className="mx-auto w-full max-w-2xl" role="img" aria-label={lang === 'en' ? 'System diagram showing interconnected business constraints' : 'Diagrama del sistema mostrando restricciones empresariales interconectadas'}>
-                <defs>
-                  <linearGradient id="line-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#00D77F" stopOpacity="0.5" />
-                    <stop offset="100%" stopColor="#AEFC49" stopOpacity="0.5" />
-                  </linearGradient>
-                </defs>
-                {[
-                  [80, 60, 200, 60],
-                  [200, 60, 320, 140],
-                  [320, 140, 200, 220],
-                  [200, 220, 80, 140],
-                  [80, 140, 80, 60],
-                  [200, 60, 200, 220],
-                  [80, 140, 320, 140],
-                ].map(([x1, y1, x2, y2], i) => (
-                  <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="url(#line-grad)" strokeWidth="1.5" strokeDasharray="4 3" opacity="0.4" />
-                ))}
-                {[
-                  [80, 60, h.diagramLabels[0]],
-                  [200, 60, h.diagramLabels[1]],
-                  [320, 140, h.diagramLabels[2]],
-                  [200, 220, h.diagramLabels[3]],
-                  [80, 140, h.diagramLabels[4]],
-                ].map(([cx, cy, label], i) => (
-                  <g key={i}>
-                    <circle cx={cx as number} cy={cy as number} r="7" fill="#00D77F" opacity="0.85" />
-                    <text x={cx as number} y={(cy as number) - 16} textAnchor="middle" fill="#E0EDEF" fontSize="12" fontFamily="Inter, sans-serif" fontWeight="500">
-                      {label}
-                    </text>
-                  </g>
-                ))}
-              </svg>
+              <SystemDiagram />
             </div>
           </div>
         </section>

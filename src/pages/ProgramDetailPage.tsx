@@ -6,6 +6,28 @@ import { SEO } from '@/components/SEO';
 import { CTABlock } from '@/components/CTABlock';
 import { getProgramBySlug } from '@/data/programs';
 import { siteConfig } from '@/config/site';
+import { EconomicsRelationshipMap } from '@/components/visuals/EconomicsRelationshipMap';
+import { DecisionHandoffRouting } from '@/components/visuals/DecisionHandoffRouting';
+import { FounderToSystemStates } from '@/components/visuals/FounderToSystemStates';
+import { CapacityStewardshipImpact } from '@/components/visuals/CapacityStewardshipImpact';
+import { ContinuityLine } from '@/components/visuals/ContinuityLine';
+
+function ProgramVisual({ slugEn }: { slugEn: string }) {
+  switch (slugEn) {
+    case 'profit-maximization':
+      return <EconomicsRelationshipMap />;
+    case 'operational-optimization':
+      return <DecisionHandoffRouting />;
+    case 'freedom-architecture':
+      return <FounderToSystemStates />;
+    case 'kingdom-wealth-and-impact':
+      return <CapacityStewardshipImpact />;
+    case 'prophetic-business-mentorship':
+      return <ContinuityLine />;
+    default:
+      return null;
+  }
+}
 
 export function ProgramDetailPage() {
   const { t, lang, applyPath, contactPath, blueprintPath } = useLang();
@@ -76,6 +98,9 @@ export function ProgramDetailPage() {
           <section className="border-t border-ink-700/50 py-20 lg:py-28">
             <div className="container-prose">
               <p className="text-base leading-relaxed text-ink-300">{content.blueprintRelation}</p>
+              <div className="mt-10 animate-on-scroll">
+                <CapacityStewardshipImpact />
+              </div>
               <div className="mt-8">
                 <Link to={blueprintPath} className="btn-secondary">
                   {t.cta.exploreBlueprint}
@@ -114,6 +139,15 @@ export function ProgramDetailPage() {
                     <h2 className="text-xs font-semibold uppercase tracking-[0.15em] text-brand-light-green">{sectionLabels.howWorks}</h2>
                     <p className="mt-4 text-base leading-relaxed text-ink-200">{content.howItWorks}</p>
                   </div>
+                </div>
+              </div>
+            </section>
+
+            {/* Native visual component */}
+            <section className="border-t border-ink-700/50 py-20 lg:py-28">
+              <div className="container-wide">
+                <div className="animate-on-scroll">
+                  <ProgramVisual slugEn={program.slugEn} />
                 </div>
               </div>
             </section>
