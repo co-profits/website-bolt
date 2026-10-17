@@ -171,6 +171,7 @@ export interface Translation {
     intro: string;
     fields: { name: string; company: string; country: string; email: string; message: string };
     cta: string;
+    submitting: string;
     privacy: string;
     success: string;
     error: string;
@@ -180,6 +181,7 @@ export interface Translation {
   };
   cookieBanner: {
     text: string;
+    textBeforeLink: string;
     accept: string;
     necessary: string;
     settings: string;
@@ -482,6 +484,7 @@ const en: Translation = {
     intro: 'Use this pathway for partnerships, alliances, referrals, media, speaking, or another business inquiry. If you want your business evaluated for the Prophetic Business Blueprint, use the separate form.',
     fields: { name: 'Name', company: 'Company', country: 'Country', email: 'Email', message: 'Message' },
     cta: 'Send Message',
+    submitting: 'Sending...',
     privacy: 'Your information is used to review and respond to this message. See our Privacy Policy.',
     success: 'Your message was received. We will review it and respond through the email you provided.',
     error: 'We could not send your message. Your information remains on this page. Please try again.',
@@ -491,6 +494,7 @@ const en: Translation = {
   },
   cookieBanner: {
     text: 'Company of Profits uses necessary cookies to keep the site working. With your permission, analytics tools help us understand aggregate usage and improve the experience. Read our Cookie Policy.',
+    textBeforeLink: 'Company of Profits uses necessary cookies to keep the site working. With your permission, analytics tools help us understand aggregate usage and improve the experience. ',
     accept: 'Accept analytics',
     necessary: 'Only necessary',
     settings: 'Cookie settings',
@@ -793,6 +797,7 @@ const es: Translation = {
     intro: 'Usa este canal para alianzas, asociaciones, referidos, medios, conferencias u otra consulta empresarial. Si quieres que evaluemos tu empresa para la Radiografía Empresarial Profética, utiliza el formulario separado.',
     fields: { name: 'Nombre', company: 'Empresa', country: 'País', email: 'Correo electrónico', message: 'Mensaje' },
     cta: 'Enviar mensaje',
+    submitting: 'Enviando...',
     privacy: 'Utilizaremos tu información para revisar y responder este mensaje. Consulta nuestra Política de Privacidad.',
     success: 'Recibimos tu mensaje. Lo revisaremos y responderemos a través del correo electrónico que proporcionaste.',
     error: 'No pudimos enviar tu mensaje. Tu información permanece en esta página. Intenta nuevamente.',
@@ -802,6 +807,7 @@ const es: Translation = {
   },
   cookieBanner: {
     text: 'Company of Profits utiliza cookies necesarias para que el sitio funcione. Con tu permiso, las herramientas de analítica nos ayudan a entender el uso agregado y mejorar la experiencia. Consulta nuestra Política de Cookies.',
+    textBeforeLink: 'Company of Profits utiliza cookies necesarias para que el sitio funcione. Con tu permiso, las herramientas de analítica nos ayudan a entender el uso agregado y mejorar la experiencia. ',
     accept: 'Aceptar analítica',
     necessary: 'Solo necesarias',
     settings: 'Configurar cookies',

@@ -5,6 +5,7 @@ import { useScrollReveal } from '@/hooks/useScrollReveal';
 import { SEO } from '@/components/SEO';
 import { PageHeader } from '@/components/PageHeader';
 import { CTABlock } from '@/components/CTABlock';
+import { siteConfig } from '@/config/site';
 
 export function BlueprintPage() {
   const { t, lang, applyPath } = useLang();
@@ -13,7 +14,7 @@ export function BlueprintPage() {
 
   const facts = lang === 'en'
     ? [
-        { label: 'Price', value: 'USD $2,300' },
+        { label: 'Price', value: siteConfig.blueprintPrice },
         { label: 'Format', value: '100% live, virtual and personalized' },
         { label: 'Sessions', value: 'At least seven live videoconference sessions' },
         { label: 'Team', value: 'Business consultant and prophet' },

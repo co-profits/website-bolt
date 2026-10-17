@@ -7,13 +7,18 @@ import { SEO } from '@/components/SEO';
 import { PageHeader } from '@/components/PageHeader';
 import { FormField } from '@/components/FormField';
 import { supabase } from '@/lib/supabase';
+import { trackEvent } from '@/lib/analytics';
 
 export function ContactPage() {
   const { t, lang, applyPath } = useLang();
   const ref = useScrollReveal<HTMLElement>();
   const c = t.contactPage;
 
+  const contactNav = t.nav.find((n) => n.path === (lang === 'en' ? '/en/contact' : '/es/contacto'));
+  const contactLabel = contactNav ? contactNav.label : (lang === 'en' ? 'Contact' : 'Contacto');
+
   const [form, setForm] = useState({ name: '', company: '', country: '', email: '', message: '' });
+  const [honeypot, setHoneypot] = useState('');
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
 
@@ -44,8 +49,10 @@ export function ContactPage() {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    if (honeypot) return;
     if (!validate()) return;
     setStatus('submitting');
+    trackEvent('contact_submit_attempted', { language: lang });
     try {
       const { error } = await supabase.from('contact_submissions').insert({
         name: form.name,
@@ -56,8 +63,10 @@ export function ContactPage() {
         language: lang,
       });
       if (error) throw error;
+      trackEvent('contact_submitted', { language: lang });
       setStatus('success');
     } catch {
+      trackEvent('contact_failed', { language: lang });
       setStatus('error');
     }
   };
@@ -97,10 +106,10 @@ export function ContactPage() {
       />
       <article ref={ref}>
         <PageHeader
-          eyebrow={t.nav[8].label}
+          eyebrow={contactLabel}
           title={c.title}
           subtitle={c.intro}
-          breadcrumbs={[{ label: t.nav[8].label }]}
+          breadcrumbs={[{ label: contactLabel }]}
         />
 
         <section className="border-t border-ink-700/50 py-20 lg:py-28">
@@ -113,6 +122,19 @@ export function ContactPage() {
             )}
 
             <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+              {/* Honeypot — hidden from users, catches bots */}
+              <div className="absolute left-[-9999px]" aria-hidden="true">
+                <label htmlFor="website-check">Website</label>
+                <input
+                  id="website-check"
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                />
+              </div>
+
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                 <FormField label={c.fields.name} name="name" required value={form.name} onChange={(v) => update('name', v)} error={errors.name} />
                 <FormField label={c.fields.company} name="company" required value={form.company} onChange={(v) => update('company', v)} error={errors.company} />
@@ -128,7 +150,7 @@ export function ContactPage() {
                   disabled={status === 'submitting'}
                   className="btn-primary mt-6 w-full sm:w-auto"
                 >
-                  {status === 'submitting' ? '...' : c.cta}
+                  {status === 'submitting' ? c.submitting : c.cta}
                 </button>
               </div>
             </form>

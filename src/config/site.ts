@@ -2,7 +2,7 @@ export const siteConfig = {
   companyName: 'Company of Profits',
   domain: 'https://www.companyofprofits.com',
   blueprintPrice: 'USD $2,300',
-  contactEmail: '[OFFICIAL CONTACT EMAIL — CONFIGURE BEFORE LAUNCH]',
+  contactEmail: 'info@companyofprofits.com',
   analyticsId: 'G-LVETR27HGQ',
   clarityId: 'ylyrmu1odz',
   sanityProjectId: 'tue7ygdx',

@@ -40,7 +40,7 @@ export function CookieBanner() {
       <div className="container-wide py-4">
         <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
           <p className="max-w-2xl text-xs leading-relaxed text-ink-300">
-            {t.cookieBanner.text.split('Read our Cookie Policy.')[0]}
+            {t.cookieBanner.textBeforeLink}
             {lang === 'en' ? 'Read our ' : 'Consulta nuestra '}
             <Link to={cookiePolicyPath} className="text-brand-light-green underline hover:text-brand-light-yellow">
               {t.footer.cookiePolicy}
