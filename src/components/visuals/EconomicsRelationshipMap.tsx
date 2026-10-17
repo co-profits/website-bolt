@@ -25,7 +25,7 @@ export function EconomicsRelationshipMap() {
 
   return (
     <figure
-      className="economics-map w-full rounded-xl border border-ink-700/50 bg-teal-900/10 p-6 lg:p-8"
+      className="economics-map w-full rounded-xl border border-ink-700/50 bg-ink-800/40 p-6 lg:p-8"
       role="img"
       aria-label={labels.accessibleSummary}
     >

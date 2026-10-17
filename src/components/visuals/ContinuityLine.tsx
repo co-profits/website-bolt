@@ -11,6 +11,7 @@ export function ContinuityLine() {
         businessCounsel: 'Business counsel',
         propheticDiscernment: 'Prophetic discernment',
         accessibleSummary: 'Mentorship is an optional ongoing relationship with business counsel and prophetic discernment across before, during, and after any core program.',
+        continuity: 'Optional continuity across seasons',
       }
     : {
         before: 'Antes',
@@ -19,74 +20,84 @@ export function ContinuityLine() {
         businessCounsel: 'Consejo empresarial',
         propheticDiscernment: 'Discernimiento profético',
         accessibleSummary: 'La mentoría es una relación continua y opcional con consejo empresarial y discernimiento profético antes, durante y después de cualquier programa principal.',
+        continuity: 'Continuidad opcional a través de temporadas',
       };
 
   return (
     <figure
-      className="continuity-line w-full rounded-xl border border-ink-700/50 bg-teal-900/10 p-6 lg:p-8"
+      className="continuity-line w-full rounded-xl border border-ink-700/50 bg-ink-800/40 p-6 lg:p-8"
       role="img"
       aria-label={labels.accessibleSummary}
     >
       <figcaption className="sr-only">{labels.accessibleSummary}</figcaption>
 
-      {/* Desktop SVG — horizontal line with three points and parallel rail */}
-      <svg viewBox="0 0 720 260" className="hidden w-full md:block" aria-hidden="true">
+      {/* Desktop SVG — horizontal timeline with three phases and dual rails */}
+      <svg viewBox="0 0 720 280" className="hidden w-full md:block" aria-hidden="true">
         <defs>
           <linearGradient id="vg05-line" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#00D77F" stopOpacity="0.4" />
-            <stop offset="100%" stopColor="#00D77F" stopOpacity="0.2" />
+            <stop offset="0%" stopColor="#00D77F" stopOpacity="0.3" />
+            <stop offset="50%" stopColor="#00D77F" stopOpacity="0.6" />
+            <stop offset="100%" stopColor="#00D77F" stopOpacity="0.3" />
           </linearGradient>
         </defs>
 
-        {/* Main horizontal line */}
-        <line x1="80" y1="100" x2="640" y2="100" stroke="url(#vg05-line)" strokeWidth="2" />
+        {/* Main horizontal timeline */}
+        <line x1="80" y1="110" x2="640" y2="110" stroke="url(#vg05-line)" strokeWidth="2.5" />
 
-        {/* Three spaced points */}
-        <circle cx="120" cy="100" r="6" fill="#00D77F" opacity="0.6" />
-        <circle cx="360" cy="100" r="7" fill="#00D77F" opacity="0.75" />
-        <circle cx="600" cy="100" r="6" fill="#00D77F" opacity="0.6" />
+        {/* Three spaced phase nodes */}
+        <circle cx="120" cy="110" r="8" fill="#06202B" stroke="#00D77F" strokeWidth="1.5" opacity="0.7" />
+        <circle cx="360" cy="110" r="10" fill="#06202B" stroke="#00D77F" strokeWidth="2" opacity="0.9" />
+        <circle cx="600" cy="110" r="8" fill="#06202B" stroke="#00D77F" strokeWidth="1.5" opacity="0.7" />
 
-        {/* Point labels */}
-        <text x="120" y="80" textAnchor="middle" fill="#E0EDEF" fontSize="15" fontFamily="Manrope, sans-serif" fontWeight="600">
+        {/* Phase labels */}
+        <text x="120" y="85" textAnchor="middle" fill="#E0EDEF" fontSize="15" fontFamily="Manrope, sans-serif" fontWeight="600">
           {labels.before}
         </text>
-        <text x="360" y="80" textAnchor="middle" fill="#E0EDEF" fontSize="15" fontFamily="Manrope, sans-serif" fontWeight="600">
+        <text x="360" y="85" textAnchor="middle" fill="#E0EDEF" fontSize="15" fontFamily="Manrope, sans-serif" fontWeight="600">
           {labels.during}
         </text>
-        <text x="600" y="80" textAnchor="middle" fill="#E0EDEF" fontSize="15" fontFamily="Manrope, sans-serif" fontWeight="600">
+        <text x="600" y="85" textAnchor="middle" fill="#E0EDEF" fontSize="15" fontFamily="Manrope, sans-serif" fontWeight="600">
           {labels.after}
         </text>
 
-        {/* Parallel rail — business counsel and prophetic discernment */}
-        <line x1="80" y1="180" x2="640" y2="180" stroke="#1a3a32" strokeWidth="0.5" strokeDasharray="4 3" opacity="0.4" />
+        {/* Dual rails — business counsel and prophetic discernment */}
+        <line x1="80" y1="180" x2="640" y2="180" stroke="#1A4A58" strokeWidth="1" strokeDasharray="4 3" opacity="0.5" />
+        <line x1="80" y1="220" x2="640" y2="220" stroke="#1A4A58" strokeWidth="1" strokeDasharray="4 3" opacity="0.3" />
 
-        <text x="240" y="205" textAnchor="middle" fill="#8a9a96" fontSize="12" fontFamily="Inter, sans-serif" fontWeight="500">
+        {/* Rail labels */}
+        <rect x="200" y="168" width="160" height="24" rx="6" fill="#0B2C38" stroke="#103845" strokeWidth="0.5" />
+        <text x="280" y="184" textAnchor="middle" fill="#B5D2DB" fontSize="12" fontFamily="Inter, sans-serif" fontWeight="500">
           {labels.businessCounsel}
         </text>
-        <text x="480" y="205" textAnchor="middle" fill="#8a9a96" fontSize="12" fontFamily="Inter, sans-serif" fontWeight="500">
+
+        <rect x="380" y="208" width="220" height="24" rx="6" fill="#0B2C38" stroke="#103845" strokeWidth="0.5" />
+        <text x="490" y="224" textAnchor="middle" fill="#B5D2DB" fontSize="12" fontFamily="Inter, sans-serif" fontWeight="500">
           {labels.propheticDiscernment}
         </text>
 
-        {/* Green signal for continuity */}
-        <text x="360" y="240" textAnchor="middle" fill="#00D77F" fontSize="11" fontFamily="Inter, sans-serif" fontStyle="italic" opacity="0.7">
-          {lang === 'en' ? 'Optional continuity across seasons' : 'Continuidad opcional a través de temporadas'}
+        {/* Continuity signal */}
+        <text x="360" y="265" textAnchor="middle" fill="#00D77F" fontSize="11" fontFamily="Inter, sans-serif" fontStyle="italic" opacity="0.7">
+          {labels.continuity}
         </text>
       </svg>
 
-      {/* Mobile — vertical ordered list */}
+      {/* Mobile — vertical timeline with labels */}
       <div className="md:hidden">
         <ol className="relative space-y-0 border-l-2 border-brand-light-green/30 pl-6">
-          <li className="relative pb-6">
-            <div className="absolute -left-[27px] top-2 h-3 w-3 rounded-full bg-brand-light-green/60" aria-hidden="true" />
+          <li className="relative pb-8">
+            <div className="absolute -left-[27px] top-2 h-3 w-3 rounded-full border-2 border-brand-light-green/60 bg-ink-900" aria-hidden="true" />
             <p className="font-display text-sm font-semibold text-white">{labels.before}</p>
+            <p className="mt-1 text-xs text-ink-400">{labels.businessCounsel}</p>
           </li>
-          <li className="relative pb-6">
-            <div className="absolute -left-[27px] top-2 h-3 w-3 rounded-full bg-brand-light-green/70" aria-hidden="true" />
+          <li className="relative pb-8">
+            <div className="absolute -left-[27px] top-2 h-3.5 w-3.5 rounded-full border-2 border-brand-light-green bg-brand-light-green/20" aria-hidden="true" />
             <p className="font-display text-sm font-semibold text-white">{labels.during}</p>
+            <p className="mt-1 text-xs text-ink-400">{labels.businessCounsel} · {labels.propheticDiscernment}</p>
           </li>
-          <li className="relative pb-6">
-            <div className="absolute -left-[27px] top-2 h-3 w-3 rounded-full bg-brand-light-green/60" aria-hidden="true" />
+          <li className="relative pb-8">
+            <div className="absolute -left-[27px] top-2 h-3 w-3 rounded-full border-2 border-brand-light-green/60 bg-ink-900" aria-hidden="true" />
             <p className="font-display text-sm font-semibold text-white">{labels.after}</p>
+            <p className="mt-1 text-xs text-ink-400">{labels.propheticDiscernment}</p>
           </li>
         </ol>
         <div className="mt-4 space-y-2 rounded-lg border border-ink-700/50 bg-ink-800/20 p-4">
@@ -94,7 +105,7 @@ export function ContinuityLine() {
           <p className="text-xs font-medium text-ink-200">{labels.propheticDiscernment}</p>
         </div>
         <p className="mt-3 text-center text-xs italic text-brand-light-green/70">
-          {lang === 'en' ? 'Optional continuity across seasons' : 'Continuidad opcional a través de temporadas'}
+          {labels.continuity}
         </p>
       </div>
     </figure>
