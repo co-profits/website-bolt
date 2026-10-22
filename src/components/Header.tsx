@@ -164,8 +164,8 @@ export function Header() {
             {programsOpen && (
               <div
                 id="programs-panel"
-                className="absolute right-0 top-full pt-3"
-                style={{ width: 'min(960px, calc(100vw - 3rem))', right: 0 }}
+                className="fixed left-1/2 top-16 -translate-x-1/2 pt-3 lg:top-20"
+                style={{ width: 'min(960px, calc(100vw - 3rem))' }}
               >
                 <div
                   className="surface-forest border border-semantic-rule-on-dark rounded-lg shadow-xl overflow-hidden"

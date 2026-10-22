@@ -221,7 +221,7 @@ const en: Translation = {
     { label: 'FAQ', path: '/en/faq/' },
     { label: 'Contact', path: '/en/contact/' },
   ],
-  navCta: 'Apply for the Prophetic Business Blueprint',
+  navCta: 'Apply for Blueprint',
   languageLabel: 'ES',
   footer: {
     tagline: 'Strategic Business Consulting and Prophetic Guidance for Christian Entrepreneurs.',
@@ -533,7 +533,7 @@ const es: Translation = {
     { label: 'Preguntas frecuentes', path: '/es/faq/' },
     { label: 'Contáctanos', path: '/es/contacto/' },
   ],
-  navCta: 'Aplicar a la Radiografía Empresarial Profética',
+  navCta: 'Aplicar a la radiografía',
   languageLabel: 'EN',
   footer: {
     tagline: 'Consultoría estratégica de negocios y guía profética para empresarios cristianos.',
