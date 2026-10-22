@@ -5,3 +5,29 @@ By default, this template supports JSX syntax with Tailwind CSS classes, React h
 Use icons from lucide-react for logos.
 
 Import project modules with the `@/` path alias, which maps to `src/` (e.g. `@/components/Foo` == `src/components/Foo`), instead of deep relative paths like `../../components/Foo`.
+
+Company of Profits — Persistent Project Knowledge
+
+Use this context in every phase. It is intentionally short. The phase prompt and Master Reference contain the detailed implementation specification.
+
+# Company of Profits — Persistent Project Knowledge
+
+Use this context in every phase. It is intentionally short. The phase prompt and Master Reference contain the detailed implementation specification.
+
+## Visual and editorial rules
+
+Use Manrope for display and Inter for body/UI. Use the approved dark/light green foundation with restrained light yellow and purple accents. The Boardroom Editorial system is clear by default and dark by intention: light surfaces carry explanation, reading, diagnosis, forms, articles, and legal content; dark surfaces mark recognition, integrated prophetic differentiation, Blueprint emphasis, and selective action.
+
+No founder photograph is used. Kingdom Wealth & Impact is visibly in development and must not look fully available. Use no religious clichés, literal flames, mystical spectacle, stock consulting scenes, fake dashboards, fake documents, glowing nodes, translucent glass cards, decorative connector networks, or image without a communication job.
+
+## Bilingual requirement
+
+English and Latin American/Colombian Spanish are first-class experiences. Use the approved V3 Spanish copy, route map, slugs, labels, metadata, and CTA parity. Do not mechanically translate, force English line breaks, or make Spanish artificially more religious. URL language is the source of truth.
+
+## Protected architecture
+
+Preserve the existing Bolt.new → GitHub → Cloudflare Pages → companyofprofits.com architecture. Sanity remains the Insights CMS. Supabase remains the application backend. 
+
+## Execution discipline
+
+Each phase is gated. Report files modified, actual token use, tests run, failures, and current recoverable state. Respect the phase ceiling and stop near 80% of it if acceptance is not achieved. Never silently expand scope. Never proceed past a protected-functionality regression.
