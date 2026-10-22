@@ -17,8 +17,7 @@ export function CTABlock({ eyebrow, title, subtitle, buttonLabel, buttonTo }: CT
   const label = buttonLabel || t.cta.applyBlueprint;
 
   return (
-    <section className="relative overflow-hidden border-t border-ink-700/50 bg-ink-900">
-      <div className="bg-radial-glow absolute inset-0" aria-hidden="true" />
+    <section className="surface-forest border-t border-semantic-rule-on-dark">
       <div className="container-wide relative py-20 lg:py-28">
         <div className="mx-auto max-w-3xl text-center">
           {eyebrow && (

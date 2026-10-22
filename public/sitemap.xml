@@ -3,183 +3,240 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://www.companyofprofits.com/en/</loc>
+    <lastmod>2026-10-22</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.companyofprofits.com/en/" />
   </url>
   <url>
-    <loc>https://www.companyofprofits.com/en/blueprint</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/blueprint" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/radiografia" />
+    <loc>https://www.companyofprofits.com/en/blueprint/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/blueprint/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/radiografia/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.companyofprofits.com/en/blueprint/" />
   </url>
   <url>
-    <loc>https://www.companyofprofits.com/en/methodology</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/methodology" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/metodologia" />
+    <loc>https://www.companyofprofits.com/en/methodology/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/methodology/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/metodologia/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.companyofprofits.com/en/methodology/" />
   </url>
   <url>
-    <loc>https://www.companyofprofits.com/en/programs</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/programs" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/programas" />
+    <loc>https://www.companyofprofits.com/en/programs/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/programs/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/programas/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.companyofprofits.com/en/programs/" />
   </url>
   <url>
-    <loc>https://www.companyofprofits.com/en/programs/profit-maximization</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/programs/profit-maximization" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/programas/rentabilidad-maximizada" />
+    <loc>https://www.companyofprofits.com/en/programs/profit-maximization/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/programs/profit-maximization/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/programas/rentabilidad-maximizada/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.companyofprofits.com/en/programs/profit-maximization/" />
   </url>
   <url>
-    <loc>https://www.companyofprofits.com/en/programs/operational-optimization</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/programs/operational-optimization" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/programas/optimizacion-operativa" />
+    <loc>https://www.companyofprofits.com/en/programs/operational-optimization/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/programs/operational-optimization/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/programas/optimizacion-operativa/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.companyofprofits.com/en/programs/operational-optimization/" />
   </url>
   <url>
-    <loc>https://www.companyofprofits.com/en/programs/freedom-architecture</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/programs/freedom-architecture" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/programas/arquitectura-de-independencia" />
+    <loc>https://www.companyofprofits.com/en/programs/freedom-architecture/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/programs/freedom-architecture/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/programas/arquitectura-de-independencia/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.companyofprofits.com/en/programs/freedom-architecture/" />
   </url>
   <url>
-    <loc>https://www.companyofprofits.com/en/programs/kingdom-wealth-and-impact</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/programs/kingdom-wealth-and-impact" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/programas/riqueza-de-reino-e-impacto" />
+    <loc>https://www.companyofprofits.com/en/programs/kingdom-wealth-and-impact/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/programs/kingdom-wealth-and-impact/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/programas/riqueza-de-reino-e-impacto/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.companyofprofits.com/en/programs/kingdom-wealth-and-impact/" />
   </url>
   <url>
-    <loc>https://www.companyofprofits.com/en/programs/prophetic-business-mentorship</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/programs/prophetic-business-mentorship" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/programas/mentoria-empresarial-profetica" />
+    <loc>https://www.companyofprofits.com/en/programs/prophetic-business-mentorship/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/programs/prophetic-business-mentorship/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/programas/mentoria-empresarial-profetica/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.companyofprofits.com/en/programs/prophetic-business-mentorship/" />
   </url>
   <url>
-    <loc>https://www.companyofprofits.com/en/why-company-of-profits</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/why-company-of-profits" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/por-que-company-of-profits" />
+    <loc>https://www.companyofprofits.com/en/about/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/about/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/nosotros/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.companyofprofits.com/en/about/" />
   </url>
   <url>
-    <loc>https://www.companyofprofits.com/en/about</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/about" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/nosotros" />
+    <loc>https://www.companyofprofits.com/en/insights/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/insights/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/insights/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.companyofprofits.com/en/insights/" />
   </url>
   <url>
-    <loc>https://www.companyofprofits.com/en/insights</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/insights" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/insights" />
+    <loc>https://www.companyofprofits.com/en/faq/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/faq/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/faq/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.companyofprofits.com/en/faq/" />
   </url>
   <url>
-    <loc>https://www.companyofprofits.com/en/faq</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/faq" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/preguntas-frecuentes" />
+    <loc>https://www.companyofprofits.com/en/apply/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/apply/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/aplicar/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.companyofprofits.com/en/apply/" />
   </url>
   <url>
-    <loc>https://www.companyofprofits.com/en/apply</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/apply" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/aplicar" />
+    <loc>https://www.companyofprofits.com/en/contact/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/contact/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/contacto/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.companyofprofits.com/en/contact/" />
   </url>
   <url>
-    <loc>https://www.companyofprofits.com/en/contact</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/contact" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/contacto" />
+    <loc>https://www.companyofprofits.com/en/privacy-policy/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/privacy-policy/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/politica-de-privacidad/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.companyofprofits.com/en/privacy-policy/" />
   </url>
   <url>
-    <loc>https://www.companyofprofits.com/en/privacy-policy</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/privacy-policy" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/politica-de-privacidad" />
+    <loc>https://www.companyofprofits.com/en/terms-and-conditions/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/terms-and-conditions/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/terminos-y-condiciones/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.companyofprofits.com/en/terms-and-conditions/" />
   </url>
   <url>
-    <loc>https://www.companyofprofits.com/en/terms-and-conditions</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/terms-and-conditions" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/terminos-y-condiciones" />
-  </url>
-  <url>
-    <loc>https://www.companyofprofits.com/en/cookie-policy</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/cookie-policy" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/politica-de-cookies" />
+    <loc>https://www.companyofprofits.com/en/cookie-policy/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/cookie-policy/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/politica-de-cookies/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.companyofprofits.com/en/cookie-policy/" />
   </url>
   <url>
     <loc>https://www.companyofprofits.com/es/</loc>
+    <lastmod>2026-10-22</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.companyofprofits.com/en/" />
   </url>
   <url>
-    <loc>https://www.companyofprofits.com/es/radiografia</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/blueprint" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/radiografia" />
+    <loc>https://www.companyofprofits.com/es/radiografia/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/blueprint/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/radiografia/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.companyofprofits.com/en/blueprint/" />
   </url>
   <url>
-    <loc>https://www.companyofprofits.com/es/metodologia</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/methodology" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/metodologia" />
+    <loc>https://www.companyofprofits.com/es/metodologia/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/methodology/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/metodologia/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.companyofprofits.com/en/methodology/" />
   </url>
   <url>
-    <loc>https://www.companyofprofits.com/es/programas</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/programs" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/programas" />
+    <loc>https://www.companyofprofits.com/es/programas/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/programs/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/programas/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.companyofprofits.com/en/programs/" />
   </url>
   <url>
-    <loc>https://www.companyofprofits.com/es/programas/rentabilidad-maximizada</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/programs/profit-maximization" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/programas/rentabilidad-maximizada" />
+    <loc>https://www.companyofprofits.com/es/programas/rentabilidad-maximizada/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/programs/profit-maximization/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/programas/rentabilidad-maximizada/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.companyofprofits.com/en/programs/profit-maximization/" />
   </url>
   <url>
-    <loc>https://www.companyofprofits.com/es/programas/optimizacion-operativa</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/programs/operational-optimization" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/programas/optimizacion-operativa" />
+    <loc>https://www.companyofprofits.com/es/programas/optimizacion-operativa/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/programs/operational-optimization/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/programas/optimizacion-operativa/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.companyofprofits.com/en/programs/operational-optimization/" />
   </url>
   <url>
-    <loc>https://www.companyofprofits.com/es/programas/arquitectura-de-independencia</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/programs/freedom-architecture" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/programas/arquitectura-de-independencia" />
+    <loc>https://www.companyofprofits.com/es/programas/arquitectura-de-independencia/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/programs/freedom-architecture/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/programas/arquitectura-de-independencia/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.companyofprofits.com/en/programs/freedom-architecture/" />
   </url>
   <url>
-    <loc>https://www.companyofprofits.com/es/programas/riqueza-de-reino-e-impacto</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/programs/kingdom-wealth-and-impact" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/programas/riqueza-de-reino-e-impacto" />
+    <loc>https://www.companyofprofits.com/es/programas/riqueza-de-reino-e-impacto/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/programs/kingdom-wealth-and-impact/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/programas/riqueza-de-reino-e-impacto/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.companyofprofits.com/en/programs/kingdom-wealth-and-impact/" />
   </url>
   <url>
-    <loc>https://www.companyofprofits.com/es/programas/mentoria-empresarial-profetica</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/programs/prophetic-business-mentorship" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/programas/mentoria-empresarial-profetica" />
+    <loc>https://www.companyofprofits.com/es/programas/mentoria-empresarial-profetica/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/programs/prophetic-business-mentorship/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/programas/mentoria-empresarial-profetica/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.companyofprofits.com/en/programs/prophetic-business-mentorship/" />
   </url>
   <url>
-    <loc>https://www.companyofprofits.com/es/por-que-company-of-profits</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/why-company-of-profits" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/por-que-company-of-profits" />
+    <loc>https://www.companyofprofits.com/es/nosotros/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/about/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/nosotros/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.companyofprofits.com/en/about/" />
   </url>
   <url>
-    <loc>https://www.companyofprofits.com/es/nosotros</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/about" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/nosotros" />
+    <loc>https://www.companyofprofits.com/es/insights/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/insights/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/insights/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.companyofprofits.com/en/insights/" />
   </url>
   <url>
-    <loc>https://www.companyofprofits.com/es/insights</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/insights" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/insights" />
+    <loc>https://www.companyofprofits.com/es/faq/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/faq/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/faq/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.companyofprofits.com/en/faq/" />
   </url>
   <url>
-    <loc>https://www.companyofprofits.com/es/preguntas-frecuentes</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/faq" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/preguntas-frecuentes" />
+    <loc>https://www.companyofprofits.com/es/aplicar/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/apply/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/aplicar/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.companyofprofits.com/en/apply/" />
   </url>
   <url>
-    <loc>https://www.companyofprofits.com/es/aplicar</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/apply" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/aplicar" />
+    <loc>https://www.companyofprofits.com/es/contacto/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/contact/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/contacto/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.companyofprofits.com/en/contact/" />
   </url>
   <url>
-    <loc>https://www.companyofprofits.com/es/contacto</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/contact" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/contacto" />
+    <loc>https://www.companyofprofits.com/es/politica-de-privacidad/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/privacy-policy/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/politica-de-privacidad/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.companyofprofits.com/en/privacy-policy/" />
   </url>
   <url>
-    <loc>https://www.companyofprofits.com/es/politica-de-privacidad</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/privacy-policy" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/politica-de-privacidad" />
+    <loc>https://www.companyofprofits.com/es/terminos-y-condiciones/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/terms-and-conditions/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/terminos-y-condiciones/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.companyofprofits.com/en/terms-and-conditions/" />
   </url>
   <url>
-    <loc>https://www.companyofprofits.com/es/terminos-y-condiciones</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/terms-and-conditions" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/terminos-y-condiciones" />
-  </url>
-  <url>
-    <loc>https://www.companyofprofits.com/es/politica-de-cookies</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/cookie-policy" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/politica-de-cookies" />
+    <loc>https://www.companyofprofits.com/es/politica-de-cookies/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.companyofprofits.com/en/cookie-policy/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.companyofprofits.com/es/politica-de-cookies/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.companyofprofits.com/en/cookie-policy/" />
   </url>
 </urlset>

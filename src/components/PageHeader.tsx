@@ -20,9 +20,7 @@ export function PageHeader({ eyebrow, title, subtitle, breadcrumbs, children }: 
   const { t } = useLang();
 
   return (
-    <section className="relative overflow-hidden border-b border-ink-700/50 bg-ink-900 pt-28 lg:pt-36">
-      <div className="bg-grid-faint absolute inset-0 opacity-50" aria-hidden="true" />
-      <div className="bg-radial-glow absolute inset-0" aria-hidden="true" />
+    <section className="surface-forest border-b border-semantic-rule-on-dark pt-28 lg:pt-36">
       <div className="container-wide relative pb-16 lg:pb-20">
         {breadcrumbs && breadcrumbs.length > 0 && (
           <nav aria-label="Breadcrumb" className="mb-6">

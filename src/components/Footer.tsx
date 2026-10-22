@@ -10,14 +10,14 @@ export function Footer() {
 
   const legalLinks = lang === 'en'
     ? [
-        { label: t.footer.privacyPolicy, path: '/en/privacy-policy' },
-        { label: t.footer.terms, path: '/en/terms-and-conditions' },
-        { label: t.footer.cookiePolicy, path: '/en/cookie-policy' },
+        { label: t.footer.privacyPolicy, path: '/en/privacy-policy/' },
+        { label: t.footer.terms, path: '/en/terms-and-conditions/' },
+        { label: t.footer.cookiePolicy, path: '/en/cookie-policy/' },
       ]
     : [
-        { label: t.footer.privacyPolicy, path: '/es/politica-de-privacidad' },
-        { label: t.footer.terms, path: '/es/terminos-y-condiciones' },
-        { label: t.footer.cookiePolicy, path: '/es/politica-de-cookies' },
+        { label: t.footer.privacyPolicy, path: '/es/politica-de-privacidad/' },
+        { label: t.footer.terms, path: '/es/terminos-y-condiciones/' },
+        { label: t.footer.cookiePolicy, path: '/es/politica-de-cookies/' },
       ];
 
   const instagramUrl = lang === 'en' ? siteConfig.social.instagramEn : siteConfig.social.instagramEs;
@@ -124,7 +124,7 @@ export function Footer() {
                   to={contactPath}
                   className="text-sm text-ink-300 transition-colors hover:text-white"
                 >
-                  {t.nav[8].label}
+                  {t.nav[7].label}
                 </Link>
               </li>
             </ul>

@@ -15,7 +15,10 @@ export interface ProgramContent {
   blueprintRelation: string;
 }
 
+export type CtaBehavior = 'apply' | 'contact' | 'none';
+
 export interface ProgramData {
+  id: string;
   en: ProgramContent;
   es: ProgramContent;
   slugEn: string;
@@ -23,15 +26,18 @@ export interface ProgramData {
   icon: string;
   status: 'active' | 'coming-soon';
   category: 'core' | 'mentorship' | 'future';
+  ctaBehavior: CtaBehavior;
 }
 
 export const programs: ProgramData[] = [
   {
+    id: 'profit-maximization',
     slugEn: 'profit-maximization',
     slugEs: 'rentabilidad-maximizada',
     icon: 'trending-up',
     status: 'active',
     category: 'core',
+    ctaBehavior: 'apply',
     en: {
       name: 'Profit Maximization',
       slug: 'profit-maximization',
@@ -66,11 +72,13 @@ export const programs: ProgramData[] = [
     },
   },
   {
+    id: 'operational-optimization',
     slugEn: 'operational-optimization',
     slugEs: 'optimizacion-operativa',
     icon: 'settings',
     status: 'active',
     category: 'core',
+    ctaBehavior: 'apply',
     en: {
       name: 'Operational Optimization',
       slug: 'operational-optimization',
@@ -105,11 +113,13 @@ export const programs: ProgramData[] = [
     },
   },
   {
+    id: 'freedom-architecture',
     slugEn: 'freedom-architecture',
     slugEs: 'arquitectura-de-independencia',
     icon: 'compass',
     status: 'active',
     category: 'core',
+    ctaBehavior: 'apply',
     en: {
       name: 'Freedom Architecture',
       slug: 'freedom-architecture',
@@ -144,11 +154,13 @@ export const programs: ProgramData[] = [
     },
   },
   {
+    id: 'kingdom-wealth-and-impact',
     slugEn: 'kingdom-wealth-and-impact',
     slugEs: 'riqueza-de-reino-e-impacto',
     icon: 'crown',
     status: 'coming-soon',
     category: 'future',
+    ctaBehavior: 'none',
     en: {
       name: 'Kingdom Wealth & Impact',
       slug: 'kingdom-wealth-and-impact',
@@ -183,11 +195,13 @@ export const programs: ProgramData[] = [
     },
   },
   {
+    id: 'prophetic-business-mentorship',
     slugEn: 'prophetic-business-mentorship',
     slugEs: 'mentoria-empresarial-profetica',
     icon: 'users',
     status: 'active',
     category: 'mentorship',
+    ctaBehavior: 'contact',
     en: {
       name: 'Prophetic Business Mentorship',
       slug: 'prophetic-business-mentorship',
@@ -229,6 +243,6 @@ export function getProgramBySlug(slug: string, lang: 'en' | 'es'): ProgramData |
 
 export function getProgramPath(program: ProgramData, lang: 'en' | 'es'): string {
   return lang === 'en'
-    ? `/en/programs/${program.slugEn}`
-    : `/es/programas/${program.slugEs}`;
+    ? `/en/programs/${program.slugEn}/`
+    : `/es/programas/${program.slugEs}/`;
 }

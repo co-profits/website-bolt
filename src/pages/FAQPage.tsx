@@ -35,15 +35,15 @@ export function FAQPage() {
       <SEO
         title={t.seo.faqTitle}
         description={t.seo.faqDesc}
-        path={lang === 'en' ? '/en/faq' : '/es/preguntas-frecuentes'}
-        alternates={{ en: '/en/faq', es: '/es/preguntas-frecuentes' }}
+        path={lang === 'en' ? '/en/faq/' : '/es/faq/'}
+        alternates={{ en: '/en/faq/', es: '/es/faq/' }}
       />
       <article ref={ref}>
         <PageHeader
-          eyebrow={t.nav[7].label}
+          eyebrow={t.nav[6].label}
           title={f.title}
           subtitle={f.subtitle}
-          breadcrumbs={[{ label: t.nav[7].label }]}
+          breadcrumbs={[{ label: t.nav[6].label }]}
         />
 
         <section className="border-t border-ink-700/50 py-20 lg:py-28">

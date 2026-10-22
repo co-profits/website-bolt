@@ -1,4 +1,4 @@
-import { Link, useParams, Navigate } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { useLang } from '@/i18n/LangContext';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
@@ -54,11 +54,52 @@ export function InsightArticlePage() {
   const key = `${lang}:${slug}`;
   const article: PostDetail | undefined = sanityData.posts[key];
 
+  const otherLang = lang === 'en' ? 'es' : 'en';
+  const otherKey = `${otherLang}:${slug}`;
+  const otherLangArticle: PostDetail | undefined = sanityData.posts[otherKey];
+
   if (!article) {
-    return <Navigate to={lang === 'en' ? '/en/insights' : '/es/insights'} replace />;
+    const insightsBase = lang === 'en' ? '/en/insights/' : '/es/insights/';
+    const otherInsightsBase = otherLang === 'en' ? '/en/insights/' : '/es/insights/';
+    const fallbackTitle = lang === 'en' ? 'Article not available' : 'Artículo no disponible';
+    const fallbackBody = lang === 'en'
+      ? 'This article has not been published in your current language.'
+      : 'Este artículo no ha sido publicado en tu idioma actual.';
+    const viewOther = lang === 'en' ? 'Read in Spanish' : 'Leer en inglés';
+    const viewIndex = lang === 'en' ? 'Browse all insights' : 'Ver todos los insights';
+
+    return (
+      <>
+        <SEO
+          title={fallbackTitle}
+          description={fallbackBody}
+          path={insightsBase}
+          alternates={{ en: '/en/insights/', es: '/es/insights/' }}
+        />
+        <section className="surface-forest min-h-[50vh] pt-28 lg:pt-36">
+          <div className="container-wide pb-20 lg:pb-28">
+            <div className="max-w-2xl">
+              <h1 className="font-display text-display-lg text-balance text-white">{fallbackTitle}</h1>
+              <p className="mt-6 text-lg leading-relaxed text-ink-300">{fallbackBody}</p>
+              <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+                {otherLangArticle && (
+                  <Link to={`${otherInsightsBase}${slug}/`} className="btn-primary">
+                    {viewOther}
+                    <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                  </Link>
+                )}
+                <Link to={insightsBase} className="btn-secondary">
+                  {viewIndex}
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+      </>
+    );
   }
 
-  const insightsBase = lang === 'en' ? '/en/insights' : '/es/insights';
+  const insightsBase = lang === 'en' ? '/en/insights/' : '/es/insights/';
   const articlePath = `${insightsBase}/${slug}`;
   const seoTitle = article.seoTitle || article.title;
   const seoDesc = article.seoDescription || article.excerpt;
@@ -82,7 +123,7 @@ export function InsightArticlePage() {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: t.common.breadcrumbHome, item: `${siteConfig.domain}${lang === 'en' ? '/en/' : '/es/'}` },
-      { '@type': 'ListItem', position: 2, name: t.nav[6].label, item: `${siteConfig.domain}${insightsBase}` },
+      { '@type': 'ListItem', position: 2, name: t.nav[5].label, item: `${siteConfig.domain}${insightsBase}` },
       { '@type': 'ListItem', position: 3, name: article.title, item: canonical },
     ],
   };
@@ -103,15 +144,14 @@ export function InsightArticlePage() {
         title={seoTitle}
         description={seoDesc}
         path={articlePath}
-        alternates={{ en: `/en/insights/${slug}`, es: `/es/insights/${slug}` }}
+        alternates={{ en: `/en/insights/${slug}/`, es: `/es/insights/${slug}/` }}
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       {faqLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />}
 
       <article ref={ref}>
-        <section className="relative overflow-hidden border-b border-ink-700/50 bg-ink-900 pt-28 lg:pt-36">
-          <div className="bg-radial-glow absolute inset-0" aria-hidden="true" />
+        <section className="surface-forest border-b border-semantic-rule-on-dark pt-28 lg:pt-36">
           <div className="container-wide relative pb-16 lg:pb-20">
             <nav aria-label="Breadcrumb" className="mb-6">
               <ol className="flex flex-wrap items-center gap-2 text-xs text-ink-400">
@@ -123,7 +163,7 @@ export function InsightArticlePage() {
                 <li><ArrowRight className="h-3 w-3" aria-hidden="true" /></li>
                 <li>
                   <Link to={insightsBase} className="transition-colors hover:text-ink-200">
-                    {t.nav[6].label}
+                    {t.nav[5].label}
                   </Link>
                 </li>
               </ol>

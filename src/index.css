@@ -6,10 +6,31 @@
 
 @layer base {
   :root {
+    /* Brand foundation */
     --color-dark-green: #06202B;
     --color-light-green: #00D77F;
     --color-light-yellow: #AEFC49;
     --color-purple: #9C8BE7;
+
+    /* COP-VIS-01: Semantic surface tokens */
+    --surface-paper: #F5F7F4;
+    --surface-stone: #E8ECE9;
+    --surface-white: #FFFFFF;
+    --surface-forest: #06202B;
+    --surface-forest-deep: #03141A;
+
+    --ink-strong: #0B2C38;
+    --ink-body: #2A3D47;
+    --ink-muted: #5A707C;
+    --ink-on-dark: #E0EDEF;
+    --ink-on-dark-muted: #7BA5B3;
+
+    --rule: #C8D2CE;
+    --rule-on-dark: #1A4A58;
+
+    --accent-green: #00D77F;
+    --accent-yellow: #AEFC49;
+    --focus-ring: 0 0 0 2px #00D77F;
   }
 
   html {
@@ -46,6 +67,11 @@
   ::-webkit-scrollbar-thumb:hover {
     background: #2A6072;
   }
+
+  /* COP-VIS-06: Reading measure — body text capped at ~68ch */
+  p, li {
+    max-width: 68ch;
+  }
 }
 
 @layer components {
@@ -57,6 +83,10 @@
     @apply mx-auto max-w-7xl px-6 lg:px-8;
   }
 
+  .container-measure {
+    @apply mx-auto max-w-2xl px-6 lg:px-8;
+  }
+
   .text-gradient-green {
     background: linear-gradient(135deg, #00D77F 0%, #AEFC49 100%);
     -webkit-background-clip: text;
@@ -64,8 +94,74 @@
     background-clip: text;
   }
 
+  /* COP-VIS-02: Surface variants */
+  .surface-paper {
+    background-color: var(--surface-paper);
+    color: var(--ink-strong);
+  }
+  .surface-paper .text-primary { color: var(--ink-strong); }
+  .surface-paper .text-secondary { color: var(--ink-body); }
+  .surface-paper .text-muted { color: var(--ink-muted); }
+  .surface-paper .rule { border-color: var(--rule); }
+  .surface-paper a { color: var(--accent-green); }
+  .surface-paper a:hover { color: var(--accent-yellow); }
+  .surface-paper .caption { color: var(--ink-muted); }
+
+  .surface-stone {
+    background-color: var(--surface-stone);
+    color: var(--ink-strong);
+  }
+  .surface-stone .text-primary { color: var(--ink-strong); }
+  .surface-stone .text-secondary { color: var(--ink-body); }
+  .surface-stone .text-muted { color: var(--ink-muted); }
+  .surface-stone .rule { border-color: var(--rule); }
+  .surface-stone a { color: var(--accent-green); }
+  .surface-stone a:hover { color: var(--accent-yellow); }
+  .surface-stone .caption { color: var(--ink-muted); }
+
+  .surface-forest {
+    background-color: var(--surface-forest);
+    color: var(--ink-on-dark);
+  }
+  .surface-forest .text-primary { color: #FFFFFF; }
+  .surface-forest .text-secondary { color: var(--ink-on-dark); }
+  .surface-forest .text-muted { color: var(--ink-on-dark-muted); }
+  .surface-forest .rule { border-color: var(--rule-on-dark); }
+  .surface-forest a { color: var(--accent-green); }
+  .surface-forest a:hover { color: var(--accent-yellow); }
+  .surface-forest .caption { color: var(--ink-on-dark-muted); }
+
+  /* COP-VIS-03: Container grammar */
+  .open-container {
+    @apply max-w-2xl;
+  }
+
+  .solid-panel {
+    background-color: var(--surface-white);
+    border: 1px solid var(--rule);
+    border-radius: 0.5rem;
+  }
+
+  .ledger-row {
+    @apply grid grid-cols-1 gap-2 border-b py-4;
+    border-color: var(--rule);
+  }
+  .ledger-row .ledger-label {
+    @apply text-sm font-semibold;
+    color: var(--ink-strong);
+  }
+  .ledger-row .ledger-desc {
+    @apply text-sm;
+    color: var(--ink-body);
+  }
+  @media (min-width: 768px) {
+    .ledger-row {
+      @apply grid-cols-[200px_1fr] gap-6;
+    }
+  }
+
   .card-surface {
-    @apply border border-ink-700/50 bg-ink-800/40 backdrop-blur-sm;
+    @apply border border-ink-700/50 bg-ink-800/40;
     border-radius: 1rem;
   }
 
@@ -78,7 +174,7 @@
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-brand-light-green px-6 py-3 text-sm font-semibold text-brand-dark-green transition-all duration-200 hover:bg-brand-light-yellow hover:shadow-lg hover:shadow-brand-light-green/20;
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-brand-light-green px-6 py-3 text-sm font-semibold text-brand-dark-green transition-all duration-200 hover:bg-brand-light-yellow;
   }
 
   .btn-secondary {
@@ -99,15 +195,16 @@
 }
 
 @layer utilities {
+  /* COP-VIS-07: Motion contract — content visible by default */
   .animate-on-scroll {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    opacity: 1;
+    transform: none;
+    transition: opacity 0.5s ease-out;
   }
 
   .animate-on-scroll.is-visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
   }
 
   .text-balance {
@@ -121,7 +218,12 @@
   }
 
   .bg-radial-glow {
-    background: radial-gradient(circle at 50% 0%, rgba(0, 215, 127, 0.08) 0%, transparent 60%);
+    background: radial-gradient(circle at 50% 0%, rgba(0, 215, 127, 0.06) 0%, transparent 60%);
+  }
+
+  .focus-visible-ring:focus-visible {
+    outline: 2px solid var(--accent-green);
+    outline-offset: 2px;
   }
 }
 
@@ -138,5 +240,6 @@
   .animate-on-scroll {
     opacity: 1;
     transform: none;
+    transition: opacity 0.15s ease-out;
   }
 }

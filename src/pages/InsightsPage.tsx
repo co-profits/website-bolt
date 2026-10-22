@@ -13,7 +13,7 @@ export function InsightsPage() {
   const ins = t.insightsPage;
 
   const articles = sanityData.lists[lang] || [];
-  const insightsBase = lang === 'en' ? '/en/insights' : '/es/insights';
+  const insightsBase = lang === 'en' ? '/en/insights/' : '/es/insights/';
 
   const emptyTitle = lang === 'en' ? 'We will publish insights soon' : 'Pronto publicaremos insights';
   const emptyBody = lang === 'en'
@@ -30,10 +30,10 @@ export function InsightsPage() {
       />
       <article ref={ref}>
         <PageHeader
-          eyebrow={t.nav[6].label}
+          eyebrow={t.nav[5].label}
           title={ins.title}
           subtitle={ins.intro}
-          breadcrumbs={[{ label: t.nav[6].label }]}
+          breadcrumbs={[{ label: t.nav[5].label }]}
         />
 
         <section className="border-t border-ink-700/50 py-20 lg:py-28">

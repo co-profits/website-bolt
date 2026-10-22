@@ -7,12 +7,16 @@ interface SEOProps {
   description: string;
   path: string;
   alternates?: { en: string; es: string };
+  image?: string;
 }
 
-export function SEO({ title, description, path, alternates }: SEOProps) {
+export function SEO({ title, description, path, alternates, image }: SEOProps) {
   const { lang } = useLang();
   const fullTitle = title.includes(siteConfig.companyName) ? title : `${title} | ${siteConfig.companyName}`;
   const baseUrl = siteConfig.domain;
+  const ogImage = image
+    ? (image.startsWith('http') ? image : `${baseUrl}${image}`)
+    : `${baseUrl}${siteConfig.ogImage}`;
 
   useEffect(() => {
     document.title = fullTitle;
@@ -23,9 +27,11 @@ export function SEO({ title, description, path, alternates }: SEOProps) {
     setMeta('og:type', 'website', true);
     setMeta('og:url', `${baseUrl}${path}`, true);
     setMeta('og:site_name', siteConfig.companyName, true);
+    setMeta('og:image', ogImage, true);
     setMeta('twitter:card', 'summary_large_image');
     setMeta('twitter:title', fullTitle);
     setMeta('twitter:description', description);
+    setMeta('twitter:image', ogImage);
     setLink('canonical', `${baseUrl}${path}`);
 
     const enPath = alternates?.en || path;
@@ -33,7 +39,7 @@ export function SEO({ title, description, path, alternates }: SEOProps) {
     setLink('alternate', `${baseUrl}${enPath}`, 'en');
     setLink('alternate', `${baseUrl}${esPath}`, 'es');
     setLink('alternate', `${baseUrl}${enPath}`, 'x-default');
-  }, [fullTitle, description, path, baseUrl, alternates, lang]);
+  }, [fullTitle, description, path, baseUrl, alternates, lang, ogImage]);
 
   return null;
 }
