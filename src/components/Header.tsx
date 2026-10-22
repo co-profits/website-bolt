@@ -12,7 +12,7 @@ const HOVER_OPEN_DELAY = 100;
 const HOVER_CLOSE_DELAY = 280;
 
 export function Header() {
-  const { t, switchLang, lang, applyPath, blueprintPath, programsPath, contactPath } = useLang();
+  const { t, switchLang, lang, applyPath, blueprintPath, programsPath } = useLang();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [programsOpen, setProgramsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -20,7 +20,6 @@ export function Header() {
   const location = useLocation();
   const openTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const programsRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
@@ -80,13 +79,28 @@ export function Header() {
         triggerRef.current?.focus();
       }
     };
+    const onClick = (e: MouseEvent) => {
+      const target = e.target as Node;
+      if (triggerRef.current && !triggerRef.current.contains(target) &&
+          !document.getElementById('programs-panel')?.contains(target)) {
+        closePanelImmediate();
+      }
+    };
     document.addEventListener('keydown', onKey);
-    return () => document.removeEventListener('keydown', onKey);
+    document.addEventListener('click', onClick);
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.removeEventListener('click', onClick);
+    };
   }, [programsOpen, closePanelImmediate]);
 
   useEffect(() => () => clearTimers(), [clearTimers]);
 
-  const navItems = t.nav.filter(item => !item.path.includes('programs'));
+  // Split nav: items before and after the Programs disclosure
+  // Nav order: Home(0), Blueprint(1), Methodology(2), Programs(3), About(4), Insights(5), FAQ(6), Contact(7)
+  const navBeforePrograms = t.nav.slice(1, 3); // Blueprint, Methodology
+  const navAfterPrograms = t.nav.slice(4); // About, Insights, FAQ, Contact
+
   const corePrograms = programs.filter(p => p.category === 'core');
   const kingdomProgram = programs.find(p => p.category === 'future');
   const mentorshipProgram = programs.find(p => p.category === 'mentorship');
@@ -97,36 +111,38 @@ export function Header() {
   const continuityLabel = lang === 'en' ? 'Continuity' : 'Continuidad';
   const featuredLabel = lang === 'en' ? 'Featured' : 'Destacado';
   const closeLabel = lang === 'en' ? 'Close' : 'Cerrar';
-  const programsLabel = t.nav.find(n => n.path.includes('programs'))?.label || 'Programs';
+  const programsLabel = lang === 'en' ? 'Programs' : 'Programas';
+  const programsGroupLabel = lang === 'en' ? 'PROGRAMS' : 'PROGRAMAS';
 
   const headerBg = scrolled
     ? 'border-b border-semantic-rule-on-dark bg-ink-900/90 backdrop-blur-md'
     : 'border-b border-transparent bg-transparent';
 
+  const showDesktop = isDesktop;
+  const navLinkClass = ({ isActive }: { isActive: boolean }) =>
+    `nav-link focus-visible-ring rounded whitespace-nowrap ${isActive ? 'nav-link-active' : ''}`;
+
   return (
     <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${headerBg}`}>
-      <div className="container-wide flex h-16 items-center justify-between lg:h-20">
+      <div className="mx-auto flex h-16 max-w-7xl items-center gap-4 px-6 lg:h-20 lg:gap-6 lg:px-8">
+        {/* Logo column */}
         <Link to={t.nav[0].path} aria-label="Company of Profits" className="flex-shrink-0">
           <Logo variant="dark" className="h-7 lg:h-9" />
         </Link>
 
-        {/* Desktop nav */}
-        <nav className="hidden items-center gap-6 xl:flex" aria-label="Primary">
-          {navItems.slice(1).map((item) => (
-            <NavLink
-              key={item.path}
-              to={item.path}
-              className={({ isActive }) =>
-                `nav-link focus-visible-ring rounded ${isActive ? 'nav-link-active' : ''}`
-              }
-            >
+        {/* Navigation column — min-width:0 to prevent overflow */}
+        <nav
+          className={`min-w-0 flex-1 items-center justify-center gap-4 lg:gap-5 ${showDesktop ? 'flex' : 'hidden'}`}
+          aria-label="Primary"
+        >
+          {navBeforePrograms.map((item) => (
+            <NavLink key={item.path} to={item.path} className={navLinkClass}>
               {item.label}
             </NavLink>
           ))}
 
           {/* Programs disclosure */}
           <div
-            ref={programsRef}
             className="relative"
             onMouseEnter={openPanel}
             onMouseLeave={closePanel}
@@ -136,7 +152,7 @@ export function Header() {
               onClick={togglePanel}
               aria-expanded={programsOpen}
               aria-controls="programs-panel"
-              className={`nav-link focus-visible-ring flex items-center gap-1 rounded ${programsOpen ? 'nav-link-active' : ''}`}
+              className={`nav-link focus-visible-ring flex items-center gap-1 rounded whitespace-nowrap ${programsOpen ? 'nav-link-active' : ''}`}
             >
               {programsLabel}
               <ChevronDown
@@ -148,16 +164,16 @@ export function Header() {
             {programsOpen && (
               <div
                 id="programs-panel"
-                className="absolute left-1/2 top-full -translate-x-1/2 pt-3"
-                style={{ minWidth: 'min(960px, calc(100vw - 2rem))' }}
+                className="absolute right-0 top-full pt-3"
+                style={{ width: 'min(960px, calc(100vw - 3rem))', right: 0 }}
               >
                 <div
                   className="surface-forest border border-semantic-rule-on-dark rounded-lg shadow-xl overflow-hidden"
                   onMouseEnter={clearTimers}
                   onMouseLeave={closePanel}
                 >
-                  <div className="grid grid-cols-[minmax(0,1fr)_auto] gap-0">
-                    {/* Left: Featured Blueprint */}
+                  <div className="grid grid-cols-[minmax(0,1fr)_minmax(260px,320px)] gap-0">
+                    {/* Left: Featured Blueprint + Core */}
                     <div className="p-6">
                       <p className="section-eyebrow mb-4 text-xs">{featuredLabel}</p>
                       <Link
@@ -198,8 +214,8 @@ export function Header() {
                       </div>
                     </div>
 
-                    {/* Right: Kingdom + Mentorship */}
-                    <div className="border-l border-semantic-rule-on-dark bg-ink-950/50 p-6 min-w-[280px]">
+                    {/* Right: Kingdom + Mentorship + View all */}
+                    <div className="border-l border-semantic-rule-on-dark bg-ink-950/50 p-6">
                       {kingdomProgram && (
                         <div className="mb-4">
                           <Link
@@ -254,10 +270,16 @@ export function Header() {
               </div>
             )}
           </div>
+
+          {navAfterPrograms.map((item) => (
+            <NavLink key={item.path} to={item.path} className={navLinkClass}>
+              {item.label}
+            </NavLink>
+          ))}
         </nav>
 
-        {/* Right actions */}
-        <div className="flex items-center gap-3">
+        {/* Right actions column */}
+        <div className="flex flex-shrink-0 items-center gap-3">
           <button
             onClick={switchLang}
             className="flex items-center gap-1.5 text-sm font-medium text-ink-200 transition-colors hover:text-white focus-visible-ring rounded"
@@ -266,12 +288,16 @@ export function Header() {
             <Globe className="h-4 w-4" aria-hidden="true" />
             {t.languageLabel}
           </button>
-          <CTAButton to={applyPath} className="hidden sm:inline-flex" icon={false}>
+          <CTAButton
+            to={applyPath}
+            className={`btn-primary !px-4 !py-2 text-xs ${showDesktop ? 'inline-flex' : 'hidden'}`}
+            icon={false}
+          >
             {t.navCta}
           </CTAButton>
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="xl:hidden text-ink-100 focus-visible-ring rounded"
+            className={`${showDesktop ? 'hidden' : 'block'} text-ink-100 focus-visible-ring rounded`}
             aria-label={closeLabel}
             aria-expanded={mobileOpen}
           >
@@ -281,10 +307,10 @@ export function Header() {
       </div>
 
       {/* Mobile drawer */}
-      {mobileOpen && (
-        <div className="xl:hidden border-t border-semantic-rule-on-dark bg-ink-900/95 backdrop-blur-md max-h-[calc(100vh-4rem)] overflow-y-auto">
-          <nav className="container-wide flex flex-col gap-1 py-4" aria-label="Mobile">
-            {navItems.slice(1).map((item) => (
+      {mobileOpen && !showDesktop && (
+        <div className="border-t border-semantic-rule-on-dark bg-ink-900/95 backdrop-blur-md max-h-[calc(100vh-4rem)] overflow-y-auto">
+          <nav className="mx-auto flex max-w-7xl flex-col gap-1 px-6 py-4" aria-label="Mobile">
+            {navBeforePrograms.map((item) => (
               <NavLink
                 key={item.path}
                 to={item.path}
@@ -300,10 +326,10 @@ export function Header() {
               </NavLink>
             ))}
 
-            {/* Programs section */}
+            {/* Programs section — one localized group, no duplicate link */}
             <div className="mt-2 pt-2 border-t border-semantic-rule-on-dark">
               <p className="px-4 py-2 text-xs font-semibold uppercase tracking-wider text-brand-light-green">
-                {programsLabel}
+                {programsGroupLabel}
               </p>
               <Link
                 to={blueprintPath}
@@ -343,10 +369,32 @@ export function Header() {
                   {lang === 'en' ? mentorshipProgram.en.name : mentorshipProgram.es.name}
                 </Link>
               )}
+              <Link
+                to={programsPath}
+                className="flex min-h-[44px] items-center rounded-lg px-4 py-3 text-sm font-semibold text-brand-light-green hover:text-brand-light-yellow focus-visible-ring"
+              >
+                {viewAllLabel}
+              </Link>
             </div>
 
+            {navAfterPrograms.map((item) => (
+              <NavLink
+                key={item.path}
+                to={item.path}
+                className={({ isActive }) =>
+                  `min-h-[44px] rounded-lg px-4 py-3 text-base font-medium transition-colors focus-visible-ring ${
+                    isActive
+                      ? 'bg-ink-800/60 text-white'
+                      : 'text-ink-200 hover:bg-ink-800/40 hover:text-white'
+                  }`
+                }
+              >
+                {item.label}
+              </NavLink>
+            ))}
+
             <Link to={applyPath} className="btn-primary mt-3 w-full">
-              {t.cta.applyBlueprint}
+              {t.navCta}
             </Link>
           </nav>
         </div>
