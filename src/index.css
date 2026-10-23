@@ -127,8 +127,8 @@
   .surface-forest .text-secondary { color: var(--ink-on-dark); }
   .surface-forest .text-muted { color: var(--ink-on-dark-muted); }
   .surface-forest .rule { border-color: var(--rule-on-dark); }
-  .surface-forest a { color: var(--accent-green); }
-  .surface-forest a:hover { color: var(--accent-yellow); }
+  .surface-forest a:not(.btn-primary):not(.btn-secondary):not(.btn-ghost) { color: var(--accent-green); }
+  .surface-forest a:not(.btn-primary):not(.btn-secondary):not(.btn-ghost):hover { color: var(--accent-yellow); }
   .surface-forest .caption { color: var(--ink-on-dark-muted); }
 
   /* COP-VIS-03: Container grammar */

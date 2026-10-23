@@ -48,7 +48,8 @@ export default function App() {
             <Route path="/es/nosotros/" element={<AboutPage />} />
             <Route path="/es/insights/" element={<InsightsPage />} />
             <Route path="/es/insights/:slug/" element={<InsightArticlePage />} />
-            <Route path="/es/preguntas-frecuentes/" element={<FAQPage />} />
+            <Route path="/es/faq/" element={<FAQPage />} />
+            <Route path="/es/preguntas-frecuentes/" element={<Navigate to="/es/faq/" replace />} />
             <Route path="/es/aplicar/" element={<ApplyPage />} />
             <Route path="/es/contacto/" element={<ContactPage />} />
             <Route path="/es/politica-de-privacidad/" element={<LegalPage doc="politica-de-privacidad" />} />
@@ -79,7 +80,8 @@ export default function App() {
             <Route path="/es/nosotros" element={<Navigate to="/es/nosotros/" replace />} />
             <Route path="/es/insights" element={<Navigate to="/es/insights/" replace />} />
             <Route path="/es/insights/:slug" element={<InsightArticlePage />} />
-            <Route path="/es/preguntas-frecuentes" element={<Navigate to="/es/preguntas-frecuentes/" replace />} />
+            <Route path="/es/faq" element={<Navigate to="/es/faq/" replace />} />
+            <Route path="/es/preguntas-frecuentes" element={<Navigate to="/es/faq/" replace />} />
             <Route path="/es/aplicar" element={<Navigate to="/es/aplicar/" replace />} />
             <Route path="/es/contacto" element={<Navigate to="/es/contacto/" replace />} />
             <Route path="/es/politica-de-privacidad" element={<Navigate to="/es/politica-de-privacidad/" replace />} />

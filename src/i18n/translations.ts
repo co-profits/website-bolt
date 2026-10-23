@@ -530,7 +530,7 @@ const es: Translation = {
     { label: 'Programas', path: '/es/programas/' },
     { label: 'Nosotros', path: '/es/nosotros/' },
     { label: 'Insights', path: '/es/insights/' },
-    { label: 'Preguntas frecuentes', path: '/es/faq/' },
+    { label: 'FAQ', path: '/es/faq/' },
     { label: 'Contáctanos', path: '/es/contacto/' },
   ],
   navCta: 'Aplicar a la radiografía',

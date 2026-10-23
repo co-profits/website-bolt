@@ -1,4 +1,5 @@
 import type { Lang } from '@/config/site';
+import { programs } from '@/data/programs';
 
 export interface RouteEntry {
   en: string;
@@ -39,8 +40,34 @@ for (const [key, entry] of Object.entries(routeMap)) {
 }
 
 export function translatePath(pathname: string, targetLang: Lang): string {
+  // First try exact match (handles all static routes)
   const key = pathToKeyMap[pathname];
   if (key) return routeMap[key][targetLang];
+
+  // Handle program-detail routes with slug: /en/programs/:slug/ -> /es/programas/:slug/
+  const programMatch = pathname.match(/^\/(en|es)\/(?:programs|programas)\/([^/]+)\/?$/);
+  if (programMatch) {
+    const sourceLang = programMatch[1] as Lang;
+    const slug = programMatch[2];
+    const program = programs.find((p) =>
+      sourceLang === 'en' ? p.slugEn === slug : p.slugEs === slug
+    );
+    if (program) {
+      return targetLang === 'en'
+        ? `/en/programs/${program.slugEn}/`
+        : `/es/programas/${program.slugEs}/`;
+    }
+  }
+
+  // Handle insights article routes: /en/insights/:slug/ -> /es/insights/:slug/
+  const insightsMatch = pathname.match(/^\/(en|es)\/insights\/([^/]+)\/?$/);
+  if (insightsMatch) {
+    const slug = insightsMatch[2];
+    return targetLang === 'en'
+      ? `/en/insights/${slug}/`
+      : `/es/insights/${slug}/`;
+  }
+
   return targetLang === 'en' ? '/en/' : '/es/';
 }
 

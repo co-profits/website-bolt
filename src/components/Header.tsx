@@ -7,7 +7,7 @@ import { ProgramIcon, type ProgramIconId } from './ProgramIcon';
 import { Logo } from './Logo';
 import { CTAButton } from './CTAButton';
 
-const DESKTOP_BREAKPOINT = 1100;
+const DESKTOP_BREAKPOINT = 1280;
 const HOVER_OPEN_DELAY = 100;
 const HOVER_CLOSE_DELAY = 280;
 
@@ -124,7 +124,7 @@ export function Header() {
 
   return (
     <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${headerBg}`}>
-      <div className="mx-auto flex h-16 max-w-7xl items-center gap-4 px-6 lg:h-20 lg:gap-6 lg:px-8">
+      <div className="mx-auto flex h-16 max-w-7xl items-center gap-3 px-6 lg:h-20 lg:gap-4 lg:px-8">
         {/* Logo column */}
         <Link to={t.nav[0].path} aria-label="Company of Profits" className="flex-shrink-0">
           <Logo variant="dark" className="h-7 lg:h-9" />
@@ -132,7 +132,7 @@ export function Header() {
 
         {/* Navigation column — min-width:0 to prevent overflow */}
         <nav
-          className={`min-w-0 flex-1 items-center justify-center gap-4 lg:gap-5 ${showDesktop ? 'flex' : 'hidden'}`}
+          className={`min-w-0 flex-1 items-center justify-center gap-3 lg:gap-4 ${showDesktop ? 'flex' : 'hidden'}`}
           aria-label="Primary"
         >
           {navBeforePrograms.map((item) => (
@@ -181,7 +181,7 @@ export function Header() {
                         onClick={closePanelImmediate}
                         className="group flex items-start gap-4 rounded-lg p-3 transition-colors hover:bg-ink-800/40 focus-visible-ring"
                       >
-                        <ProgramIcon id="blueprint" size={32} tone="dark" decorative />
+                        <ProgramIcon id="blueprint" size={40} tone="dark" decorative />
                         <div>
                           <p className="text-sm font-semibold text-white">
                             {lang === 'en' ? 'Prophetic Business Blueprint' : 'Radiografía Empresarial Profética'}
@@ -204,7 +204,7 @@ export function Header() {
                               onClick={closePanelImmediate}
                               className="group flex items-center gap-3 rounded-lg p-2.5 transition-colors hover:bg-ink-800/40 focus-visible-ring"
                             >
-                              <ProgramIcon id={p.id as ProgramIconId} size={20} tone="dark" decorative />
+                              <ProgramIcon id={p.id as ProgramIconId} size={32} tone="dark" decorative />
                               <span className="text-sm text-ink-100 group-hover:text-white">
                                 {lang === 'en' ? p.en.name : p.es.name}
                               </span>
@@ -223,7 +223,7 @@ export function Header() {
                             onClick={closePanelImmediate}
                             className="group flex items-start gap-3 rounded-lg p-2.5 transition-colors hover:bg-ink-800/40 focus-visible-ring"
                           >
-                            <ProgramIcon id={kingdomProgram.id as ProgramIconId} size={20} tone="dark" decorative />
+                            <ProgramIcon id={kingdomProgram.id as ProgramIconId} size={32} tone="dark" decorative />
                             <div>
                               <span className="text-sm font-medium text-ink-100 group-hover:text-white block">
                                 {lang === 'en' ? kingdomProgram.en.name : kingdomProgram.es.name}
@@ -244,7 +244,7 @@ export function Header() {
                             onClick={closePanelImmediate}
                             className="group flex items-start gap-3 rounded-lg p-2.5 transition-colors hover:bg-ink-800/40 focus-visible-ring"
                           >
-                            <ProgramIcon id={mentorshipProgram.id as ProgramIconId} size={20} tone="dark" decorative />
+                            <ProgramIcon id={mentorshipProgram.id as ProgramIconId} size={32} tone="dark" decorative />
                             <div>
                               <span className="text-sm font-medium text-ink-100 group-hover:text-white block">
                                 {lang === 'en' ? mentorshipProgram.en.name : mentorshipProgram.es.name}
@@ -335,7 +335,7 @@ export function Header() {
                 to={blueprintPath}
                 className="flex min-h-[44px] items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium text-ink-100 hover:bg-ink-800/40 hover:text-white focus-visible-ring"
               >
-                <ProgramIcon id="blueprint" size={20} tone="dark" decorative />
+                <ProgramIcon id="blueprint" size={28} tone="dark" decorative />
                 {lang === 'en' ? 'Prophetic Business Blueprint' : 'Radiografía Empresarial Profética'}
               </Link>
               {corePrograms.map(p => (
@@ -344,7 +344,7 @@ export function Header() {
                   to={getProgramPath(p, lang)}
                   className="flex min-h-[44px] items-center gap-3 rounded-lg px-4 py-3 text-sm text-ink-200 hover:bg-ink-800/40 hover:text-white focus-visible-ring"
                 >
-                  <ProgramIcon id={p.id as ProgramIconId} size={20} tone="dark" decorative />
+                  <ProgramIcon id={p.id as ProgramIconId} size={28} tone="dark" decorative />
                   {lang === 'en' ? p.en.name : p.es.name}
                 </Link>
               ))}
@@ -353,7 +353,7 @@ export function Header() {
                   to={getProgramPath(kingdomProgram, lang)}
                   className="flex min-h-[44px] items-center gap-3 rounded-lg px-4 py-3 text-sm text-ink-200 hover:bg-ink-800/40 hover:text-white focus-visible-ring"
                 >
-                  <ProgramIcon id={kingdomProgram.id as ProgramIconId} size={20} tone="dark" decorative />
+                  <ProgramIcon id={kingdomProgram.id as ProgramIconId} size={28} tone="dark" decorative />
                   <span>{lang === 'en' ? kingdomProgram.en.name : kingdomProgram.es.name}</span>
                   <span className="ml-auto rounded-full border border-ink-600 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-ink-300">
                     {inDevLabel}
@@ -365,7 +365,7 @@ export function Header() {
                   to={getProgramPath(mentorshipProgram, lang)}
                   className="flex min-h-[44px] items-center gap-3 rounded-lg px-4 py-3 text-sm text-ink-200 hover:bg-ink-800/40 hover:text-white focus-visible-ring"
                 >
-                  <ProgramIcon id={mentorshipProgram.id as ProgramIconId} size={20} tone="dark" decorative />
+                  <ProgramIcon id={mentorshipProgram.id as ProgramIconId} size={28} tone="dark" decorative />
                   {lang === 'en' ? mentorshipProgram.en.name : mentorshipProgram.es.name}
                 </Link>
               )}
