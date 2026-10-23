@@ -23,7 +23,7 @@ export function BlueprintPage() {
     : [
         { label: 'Precio', value: 'USD $2.300' },
         { label: 'Formato', value: '100 % en vivo, virtual y personalizado' },
-        { label: 'Sesiones', value: 'Mínimo siete sesiones por videoconferencia' },
+        { label: 'Sesiones', value: 'Mínimo siete sesiones en videoconferencia' },
         { label: 'Equipo', value: 'Consultor empresarial y profeta' },
         { label: 'Socios', value: 'Hasta dos socios fundadores incluidos' },
       ];
