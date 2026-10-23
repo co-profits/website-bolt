@@ -665,7 +665,7 @@ const es: Translation = {
     purpose: 'Su propósito es ayudar a empresarios cristianos a construir empresas que produzcan rentabilidad, libertad, capacidad de generar riqueza e impacto duradero, sin que el fundador tenga que seguir siendo el sistema operativo.',
     namingHeading: '¿Por qué el nombre "Company of Profits"?',
     namingStory: [
-      'En inglés, "company" puede significar tanto empresa como grupo de personas, mientras "profits" evoca "prophets". El nombre es intencional: creemos que la rentabilidad saludable y el discernimiento profético pertenecen al mismo trabajo serio.',
+      'En inglés, "company" puede significar tanto empresa como grupo de personas, mientras "profits" significa utilidades y evoca "prophets", profetas en ingles. El nombre es intencional: creemos que la rentabilidad saludable y el discernimiento profético pertenecen al mismo trabajo serio.',
       'También toma como referencia la expresión "una compañía de profetas" de 1 Samuel 10:10. En ese pasaje, el Espíritu de Dios viene sobre Saúl y él profetiza entre los profetas; el texto no dice que la cercanía, por sí sola, haya causado ese cambio.',
       'Para Company of Profits, el nombre expresa nuestro compromiso de ayudar a empresarios cristianos a tomar decisiones más sabias mediante estrategia seria y discernimiento guiado por el Espíritu Santo.',
     ],
